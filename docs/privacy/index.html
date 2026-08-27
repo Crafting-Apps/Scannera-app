@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Scannera</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #f8fafc;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+        .header {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #0284c7;
+            margin: 0 0 10px 0;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .meta-info {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        h2 {
+            color: #0f172a;
+            font-size: 1.3rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid #0284c7;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #334155;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+        p, li {
+            font-size: 0.95rem;
+            color: #334155;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        th {
+            background-color: #f1f5f9;
+            color: #0284c7;
+            font-weight: 600;
+        }
+        td {
+            background-color: #ffffff;
+        }
+        .badge {
+            display: inline-block;
+            background-color: #e0f2fe;
+            color: #0369a1;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: monospace;
+            border: 1px solid #bae6fd;
+        }
+        .highlight-box {
+            background-color: #f0fdf4;
+            border-left: 4px solid #16a34a;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            border-top: 1px solid #dcfce7;
+            border-right: 1px solid #dcfce7;
+            border-bottom: 1px solid #dcfce7;
+        }
+        .contact-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        a {
+            color: #0284c7;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Privacy Policy</h1>
+            <div class="meta-info">
+                <strong>Application:</strong> Scannera &nbsp;|&nbsp; 
+                <strong>Effective Date:</strong> August 9, 2026 &nbsp;|&nbsp; 
+                <strong>Last Updated:</strong> August 9, 2026
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <strong style="color: #16a34a;">Privacy-First Architecture:</strong> Scannera is engineered to process documents 100% locally on your physical Android device. We do not operate central cloud servers to collect, upload, store, or monitor your scanned files or generated QR codes.
+        </div>
+
+        <h2>1. Introduction & Overview</h2>
+        <p>Welcome to <strong>Scannera</strong> ("we," "our," or "us"). We respect your privacy and are committed to protecting it through full transparency regarding our data handling practices. Scannera is designed as a privacy-first mobile utility providing document scanning, optical character recognition (OCR), PDF editing, custom text watermarking, QR and barcode reading/generation, and optional personal cloud backup tools.</p>
+        <p>This Privacy Policy describes how we handle information, Android OS runtime permissions, and data security when you install and use Scannera on Android devices.</p>
+
+        <h2>2. Local On-Device Processing Architecture</h2>
+        <p>Scannera is engineered with a strict <strong>On-Device Data Architecture</strong>:</p>
+        <ul>
+            <li><strong>Zero Centralized Document Servers:</strong> Core application functionality—including camera capturing, page edge detection, image filter enhancements, perspective correction, PDF rendering, watermark embedding, and QR code generation—runs entirely on your local device hardware.</li>
+            <li><strong>No Centralized Uploads:</strong> Your scanned documents, captured images, exported PDFs, written annotations, digital signatures, and generated QR codes are never uploaded, transmitted, or monitored by us or any centralized server owned by Scannera.</li>
+        </ul>
+
+        <h2>3. Detailed Breakdown of Permissions & Functionalities</h2>
+        <p>To deliver its core features, Scannera requests specific Android OS runtime permissions. Every permission requested is directly tied to an in-app feature and operates within minimum-scope requirements:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Permission Name</th>
+                    <th>Associated Feature</th>
+                    <th>Technical Purpose & Data Handling</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="badge">android.permission.CAMERA</span></td>
+                    <td>Document Scanner & QR/Barcode Reader</td>
+                    <td>Used solely to capture physical paper documents and scan QR codes/barcodes in real time via live camera view. Camera feeds are processed temporarily in volatile memory on-device and are never recorded or transmitted externally.</td>
+                </tr>
+                <tr>
+                    <td><span class="badge">READ_EXTERNAL_STORAGE</span> / <span class="badge">READ_MEDIA_IMAGES</span></td>
+                    <td>Gallery Import & Custom Watermarking</td>
+                    <td>Allows you to select existing images or PDF documents from your device gallery to import into Scannera for editing, annotating, or watermarking.</td>
+                </tr>
+                <tr>
+                    <td><span class="badge">WRITE_EXTERNAL_STORAGE</span></td>
+                    <td>Exporting Scans (Android 9 & below)</td>
+                    <td>Enables saving rendered PDFs, high-resolution JPEGs, and custom QR code images directly to your device's local folder directory.</td>
+                </tr>
+                <tr>
+                    <td><span class="badge">INTERNET</span> / <span class="badge">ACCESS_NETWORK_STATE</span></td>
+                    <td>Google Play Billing & Optional Drive Sync</td>
+                    <td>Used exclusively to verify Lifetime Pro purchases via Google Play Billing servers and to execute user-initiated Google Drive cloud backups.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>4. Feature-Specific Data Disclosures</h2>
+
+        <h3>A. Document Scanner & PDF Editor</h3>
+        <p><strong>Data Involved:</strong> Camera feeds, scanned photos, cropped images, PDF annotations, text highlights, and digital signatures.</p>
+        <p><strong>Handling:</strong> All image processing, crop calculations, annotation rendering, and watermark embedding are executed locally via native device code. You maintain 100% ownership and control over where exported files are saved or shared.</p>
+
+        <h3>B. QR & Barcode Suite (Scanner & Generator)</h3>
+        <p><strong>Data Involved:</strong> Scanned barcodes, generated QR code payloads (including Wi-Fi credentials, vCard contact info, URLs, plain text, and social links).</p>
+        <p><strong>Handling:</strong> QR/Barcode decoding happens instantaneously on-device. When creating custom QR codes, input details are formatted into a matrix image purely inside your app instance. We do not index, track, or save your generated QR contents.</p>
+
+        <h3>C. Optional Google Drive Backup & Cloud Integration</h3>
+        <p><strong>Data Involved:</strong> Scanned PDF documents, local folder backup files, and Google user authentication tokens.</p>
+        <p><strong>Handling:</strong></p>
+        <ul>
+            <li>Cloud backup is an optional, user-triggered feature.</li>
+            <li>If enabled, Scannera uses official Google Sign-In SDKs to authenticate directly with Google.</li>
+            <li>Files are synced directly between your Android device and your personal Google Drive storage account.</li>
+            <li>Scannera developers do not receive, store, or have access to your Google account credentials, personal Drive folders, or backed-up files.</li>
+            <li>Use of information received from Google APIs strictly complies with the Google API Services User Data Policy, including its Limited Use requirements.</li>
+        </ul>
+
+        <h3>D. In-App Purchases & Billing Information</h3>
+        <p><strong>Data Involved:</strong> Order IDs, purchase status, and entitlement tokens for the Lifetime Pro License.</p>
+        <p><strong>Handling:</strong> Financial transactions are processed entirely by Google Play Billing services. Scannera does not collect, store, or process payment cards, banking credentials, billing addresses, or legal names. Google Play returns a secure cryptographic token to unlock Pro features.</p>
+
+        <h2>5. Analytics & Diagnostics</h2>
+        <p>To maintain app stability and prevent crashes across different Android device configurations, Scannera may collect minimal, non-personally identifiable diagnostic telemetry (e.g., system crash logs, hardware specifications, Android OS version). This technical data contains zero document contents, personal identifiers, or location data and is used strictly for crash debugging.</p>
+
+        <h2>6. Data Sharing & Third-Party Services</h2>
+        <p>We do not sell, rent, trade, or monetize your personal data or document content. We only integrate official framework SDKs necessary for app infrastructure:</p>
+        <ul>
+            <li><strong>Google Play Services / Billing:</strong> For handling securely verified in-app purchases.</li>
+            <li><strong>Google Drive API:</strong> For executing user-requested cloud backups to your private drive.</li>
+        </ul>
+
+        <h2>7. Data Retention & Deletion Policy</h2>
+        <ul>
+            <li><strong>Local Data:</strong> Your scans and saved files remain on your device until you manually delete them inside the app or uninstall the application.</li>
+            <li><strong>Cloud Backups:</strong> Files backed up to your personal Google Drive account remain in your drive until you manage or delete them through your Google Account.</li>
+            <li><strong>Data Clearance:</strong> Uninstalling Scannera immediately removes all local app-cached files, app state settings, and temporary scan memory from your device.</li>
+        </ul>
+
+        <h2>8. Children’s Privacy Protection</h2>
+        <p>Scannera is a general utility app and does not target, knowingly collect, or solicit personal information from children under the age of 13 (or under 16 in certain EU jurisdictions) in compliance with COPPA and GDPR requirements.</p>
+
+        <h2>9. Security Safeguards</h2>
+        <p>We prioritize user data safety:</p>
+        <ul>
+            <li>Data processed locally benefits from native Android Application Sandbox security.</li>
+            <li>All network communications for in-app purchases and Google Drive syncs are encrypted in transit using industry-standard HTTPS/TLS protocols.</li>
+        </ul>
+
+        <h2>10. User Rights (GDPR, CCPA, Regional Laws)</h2>
+        <p>Depending on your region, you have rights regarding your data:</p>
+        <ul>
+            <li><strong>Right to Access & Control:</strong> Because your files reside on your device, you can access, export, modify, or delete your content at any time directly through the app interface.</li>
+            <li><strong>Right to Revoke Permissions:</strong> You can revoke Camera, Storage, or Google Account permissions at any time via your Android OS settings (<code>Settings -&gt; Apps -&gt; Scannera -&gt; Permissions</code>).</li>
+        </ul>
+
+        <h2>11. Changes to This Privacy Policy</h2>
+        <p>We may update this Privacy Policy from time to time to reflect app updates, technical changes, or Play Store policy mandates. Any updates will be posted on this page with a revised "Last Updated" date at the top.</p>
+
+        <div class="contact-box">
+            <h2 style="margin-top: 0; border-left: none; padding-left: 0; color: #0284c7;">12. Contact Information</h2>
+            <p>If you have questions, feedback, or inquiries regarding this Privacy Policy or app privacy practices, please contact us at:</p>
+
+            <p style="margin-bottom: 5px;"><strong>Developer Support Email:</strong> <a href="mailto:scannera.app@gmail.com">scannera.app@gmail.com</a></p>
+            <p style="margin-top: 0;"><strong>Developer / Company Name:</strong>craftingapps.dev@gmail.com / Personal</p>
+        </div>
+    </div>
+</body>
+</html>
