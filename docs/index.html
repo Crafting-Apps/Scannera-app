@@ -78,7 +78,7 @@ body{
 }
 h1,h2,h3{color:var(--title);line-height:1.15;letter-spacing:-.022em;margin:0}
 a{color:var(--brand);text-decoration:none}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
 section{padding:88px 0}
@@ -194,16 +194,37 @@ section{padding:88px 0}
 
 /* ---------- gallery ---------- */
 .gallery{
-  display:flex;gap:20px;overflow-x:auto;padding:6px 24px 26px;
-  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
-  max-width:100%;
+  display:flex;overflow:hidden;padding:6px 0 26px;max-width:100%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);
 }
-.gallery::-webkit-scrollbar{height:8px}
-.gallery::-webkit-scrollbar-thumb{background:var(--surface-2);border-radius:999px}
+.gallery-track{
+  display:flex;gap:20px;padding-left:20px;
+  animation:gallery-scroll 80s linear infinite;
+  will-change:transform;
+}
+.gallery:hover .gallery-track,
+.gallery:focus-within .gallery-track{animation-play-state:paused}
+@keyframes gallery-scroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
 .gallery figure{
-  margin:0;flex:0 0 262px;scroll-snap-align:center;
+  margin:0;flex:0 0 262px;
   border-radius:22px;overflow:hidden;
   border:1px solid var(--border);box-shadow:var(--shadow);
+}
+/* No motion: fall back to the manual scroller it replaced. */
+@media (prefers-reduced-motion: reduce){
+  .gallery{
+    overflow-x:auto;padding:6px 24px 26px;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    -webkit-mask-image:none;mask-image:none;
+  }
+  .gallery::-webkit-scrollbar{height:8px}
+  .gallery::-webkit-scrollbar-thumb{background:var(--surface-2);border-radius:999px}
+  .gallery-track{animation:none;padding-left:0}
+  .gallery figure{scroll-snap-align:center}
 }
 
 /* ---------- pro / pricing ---------- */
@@ -390,7 +411,8 @@ footer a:hover{color:var(--title)}
       <h2>Built to feel effortless</h2>
       <p>Light and dark themes, fast rendering, and a layout that stays out of your way.</p>
     </div>
-    <div class="gallery" tabindex="0" role="group" aria-label="Screenshots of Scannera on Android">
+    <div class="gallery">
+      <div class="gallery-track" role="group" aria-label="Screenshots of Scannera on Android">
       <figure><img src="assets/screenshots/1_en-US_organise.png" alt="Scannera document library, with scans sorted into colour-coded folders" width="1080" height="1920" loading="lazy" decoding="async"></figure>
       <figure><img src="assets/screenshots/2_en-US_scan.png" alt="A sharp multi-page contract scanned into a PDF in Scannera" width="1080" height="1920" loading="lazy" decoding="async"></figure>
       <figure><img src="assets/screenshots/3_en-US_edit.png" alt="Scannera PDF editor, annotating a scanned page with the drawing tools" width="1080" height="1920" loading="lazy" decoding="async"></figure>
@@ -399,6 +421,15 @@ footer a:hover{color:var(--title)}
       <figure><img src="assets/screenshots/6_en-US_protect.png" alt="Applying a custom text watermark to a document before exporting it" width="1080" height="1920" loading="lazy" decoding="async"></figure>
       <figure><img src="assets/screenshots/7_en-US_find.png" alt="Searching the Scannera document library by document name" width="1080" height="1920" loading="lazy" decoding="async"></figure>
       <figure><img src="assets/screenshots/8_en-US_private.png" alt="Scannera privacy settings, showing on-device processing and App Lock" width="1080" height="1920" loading="lazy" decoding="async"></figure>
+      <figure aria-hidden="true"><img src="assets/screenshots/1_en-US_organise.png" alt="" width="1080" height="1920" loading="lazy" decoding="async"></figure>
+      <figure aria-hidden="true"><img src="assets/screenshots/2_en-US_scan.png" alt="" width="1080" height="1920" loading="lazy" decoding="async"></figure>
+      <figure aria-hidden="true"><img src="assets/screenshots/3_en-US_edit.png" alt="" width="1080" height="1920" loading="lazy" decoding="async"></figure>
+      <figure aria-hidden="true"><img src="assets/screenshots/4_en-US_sign.png" alt="" width="1080" height="1920" loading="lazy" decoding="async"></figure>
+      <figure aria-hidden="true"><img src="assets/screenshots/5_en-US_qr_tools.png" alt="" width="1080" height="1920" loading="lazy" decoding="async"></figure>
+      <figure aria-hidden="true"><img src="assets/screenshots/6_en-US_protect.png" alt="" width="1080" height="1920" loading="lazy" decoding="async"></figure>
+      <figure aria-hidden="true"><img src="assets/screenshots/7_en-US_find.png" alt="" width="1080" height="1920" loading="lazy" decoding="async"></figure>
+      <figure aria-hidden="true"><img src="assets/screenshots/8_en-US_private.png" alt="" width="1080" height="1920" loading="lazy" decoding="async"></figure>
+      </div>
     </div>
   </section>
 
