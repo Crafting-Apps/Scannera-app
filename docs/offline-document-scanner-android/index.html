@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Offline Document Scanner for Android | Scannera</title>
+<meta name="description" content="Scan documents, create PDFs and extract text offline with Scannera for Android. Your scans stay on your device with no account or cloud upload required.">
+<link rel="canonical" href="https://scannera.in/offline-document-scanner-android/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#F2F2F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/assets/icon.png">
+<link rel="apple-touch-icon" href="/assets/icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Scannera">
+<meta property="og:url" content="https://scannera.in/offline-document-scanner-android/">
+<meta property="og:title" content="Offline Document Scanner for Android | Scannera">
+<meta property="og:description" content="Scan documents, create PDFs and extract text offline with Scannera for Android. No account, no cloud upload required.">
+<meta property="og:image" content="https://scannera.in/assets/icon.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="The Scannera app icon">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Offline Document Scanner for Android | Scannera">
+<meta name="twitter:description" content="Scan documents, create PDFs and extract text offline with Scannera for Android. No account, no cloud upload required.">
+<meta name="twitter:image" content="https://scannera.in/assets/icon.png">
+<meta name="twitter:image:alt" content="The Scannera app icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --brand:#007AFF;
+  --brand-strong:#0055B3;
+  --pro:#5856D6;
+  --bg:#F2F2F7;
+  --surface:#FFFFFF;
+  --surface-2:#E5E5EA;
+  --title:#000000;
+  --body:#3C3C43;
+  --hint:#8E8E93;
+  --border:rgba(60,60,67,.14);
+  --shadow:0 1px 2px rgba(0,0,0,.04), 0 12px 32px rgba(0,0,0,.07);
+  --radius:20px;
+  --maxw:1120px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --brand:#0A84FF;
+    --brand-strong:#CCE4FF;
+    --pro:#5E5CE6;
+    --bg:#000000;
+    --surface:#1C1C1E;
+    --surface-2:#2C2C2E;
+    --title:#FFFFFF;
+    --body:rgba(235,235,245,.62);
+    --hint:#8E8E93;
+    --border:rgba(235,235,245,.16);
+    --shadow:0 1px 2px rgba(0,0,0,.5), 0 12px 32px rgba(0,0,0,.55);
+  }
+}
+
+*{box-sizing:border-box}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:6px}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--body);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{color:var(--title);line-height:1.15;letter-spacing:-.022em;margin:0}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%;height:auto;display:block}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:24px;padding-right:24px}
+section{padding:88px 0}
+@media (max-width:720px){section{padding:60px 0}}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav .wrap{display:flex;align-items:center;gap:16px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--title);letter-spacing:-.02em}
+.brand:hover{text-decoration:none}
+.brand img{width:30px;height:30px;border-radius:8px}
+.nav nav{margin-left:auto;display:flex;align-items:center;gap:28px}
+.nav nav a{color:var(--body);font-size:15px;font-weight:500}
+.nav nav a:hover{color:var(--title)}
+.nav nav a.btn,.nav nav a.btn:hover{color:#fff;text-decoration:none}
+@media (max-width:720px){.nav nav a.hide-sm{display:none}}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 26px;border-radius:999px;font-weight:600;font-size:16px;
+  background:var(--brand);color:#fff;border:1px solid transparent;
+  transition:transform .15s ease, filter .15s ease;
+}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px);text-decoration:none}
+.btn.ghost{background:transparent;color:var(--title);border-color:var(--border)}
+.btn.sm{padding:9px 18px;font-size:15px}
+
+/* ---------- breadcrumb ---------- */
+.crumbs{font-size:14px;color:var(--hint);padding-top:26px}
+.crumbs a{color:var(--hint)}
+.crumbs span{padding:0 8px}
+
+/* ---------- hero ---------- */
+.hero{padding-top:34px;padding-bottom:24px;text-align:center}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 15px;border-radius:999px;
+  background:var(--surface);border:1px solid var(--border);
+  font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--body);
+}
+.pill .dot{width:7px;height:7px;border-radius:50%;background:#34C759}
+.hero h1{
+  margin:26px auto 0;max-width:20ch;
+  font-size:clamp(38px,6.4vw,68px);font-weight:800;letter-spacing:-.035em;
+}
+.hero h1 em{font-style:normal;color:var(--brand)}
+.hero p.lede{margin:22px auto 0;max-width:58ch;font-size:clamp(17px,2.2vw,21px)}
+.cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:34px}
+.meta{margin-top:18px;font-size:14px;color:var(--hint)}
+
+.hero-shot{
+  margin:56px auto 0;max-width:340px;
+  border-radius:28px;overflow:hidden;
+  border:1px solid var(--border);box-shadow:var(--shadow);
+}
+.hero-shot img{height:520px;object-fit:cover;object-position:top}
+@media (max-width:720px){.hero-shot{max-width:280px}.hero-shot img{height:430px}}
+
+/* ---------- strip ---------- */
+.strip{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--border);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;
+}
+.strip div{background:var(--surface);padding:26px 18px;text-align:center}
+.strip b{display:block;color:var(--title);font-size:24px;font-weight:700;letter-spacing:-.02em}
+.strip span{font-size:13px;color:var(--hint)}
+@media (max-width:720px){.strip{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- section heads ---------- */
+.head{max-width:680px;margin:0 auto 46px;text-align:center}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--brand)}
+.head h2{margin-top:12px;font-size:clamp(28px,4.2vw,42px);font-weight:800;letter-spacing:-.03em}
+.head p{margin-top:14px}
+
+/* ---------- prose ---------- */
+.prose{max-width:760px;margin:0 auto}
+.prose h3{font-size:20px;font-weight:700;margin-top:34px}
+.prose p{margin:14px 0 0;font-size:16.5px}
+.prose ul{margin:16px 0 0;padding-left:22px}
+.prose li{margin:8px 0;font-size:16.5px}
+
+/* ---------- cards ---------- */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.grid{grid-template-columns:1fr}}
+.card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);
+}
+.card .ico{
+  width:46px;height:46px;border-radius:13px;
+  display:grid;place-items:center;margin-bottom:18px;
+  background:color-mix(in srgb, var(--brand) 12%, var(--surface));
+  color:var(--brand);
+}
+.card .ico svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-size:19px;font-weight:700;letter-spacing:-.02em}
+.card p{margin:10px 0 0;font-size:15.5px}
+
+/* ---------- band ---------- */
+.band{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:28px;padding:56px 40px;box-shadow:var(--shadow);
+}
+.band .head{margin-bottom:34px}
+@media (max-width:760px){.band{padding:38px 24px}}
+
+/* ---------- comparison table ---------- */
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow)}
+table.compare{width:100%;min-width:620px;border-collapse:collapse;background:var(--surface);font-size:15.5px}
+table.compare caption{caption-side:bottom;padding:16px 20px;font-size:14px;color:var(--hint);text-align:left}
+table.compare th,table.compare td{padding:16px 20px;text-align:left;border-top:1px solid var(--border);vertical-align:top}
+table.compare thead th{border-top:0;color:var(--title);font-weight:700;font-size:15px;background:var(--surface-2)}
+table.compare tbody th{color:var(--title);font-weight:600;width:26%}
+
+/* ---------- use cases ---------- */
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px;padding:0;list-style:none}
+.tags li{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:999px;padding:8px 16px;font-size:14.5px;
+}
+
+/* ---------- faq ---------- */
+.faq{max-width:760px;margin:0 auto}
+details{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:18px 22px;margin-bottom:12px;
+}
+details summary{
+  cursor:pointer;list-style:none;font-weight:600;color:var(--title);
+  display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:16.5px;
+}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";color:var(--hint);font-size:22px;font-weight:400;line-height:1}
+details[open] summary::after{content:"−"}
+details p{margin:14px 0 0;font-size:15.5px}
+
+/* ---------- final cta ---------- */
+.final{text-align:center}
+.final h2{font-size:clamp(30px,4.6vw,46px);font-weight:800;letter-spacing:-.03em}
+.final p{margin:16px auto 0;max-width:50ch}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--border);padding:40px 0;font-size:14px;color:var(--hint)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+footer nav{display:flex;flex-wrap:wrap;gap:22px}
+footer a{color:var(--hint)}
+footer a:hover{color:var(--title)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/icon.png" alt="">Scannera</a>
+    <nav>
+      <a href="/#features" class="hide-sm">Features</a>
+      <a href="/#privacy" class="hide-sm">Privacy</a>
+      <a href="/#pro" class="hide-sm">Pro</a>
+      <a class="btn sm" href="https://play.google.com/store/apps/details?id=com.craftingapps.scannera">Get the app</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <nav class="wrap crumbs" aria-label="Breadcrumb">
+    <a href="/">Scannera</a><span aria-hidden="true">/</span>Offline document scanner for Android
+  </nav>
+
+  <section class="hero wrap">
+    <span class="pill"><span class="dot"></span>Works in airplane mode</span>
+    <h1>Offline <em>Document Scanner</em> for Android</h1>
+    <p class="lede">Scannera turns your Android phone into a document scanner that captures, cleans up, reads and exports paperwork without an internet connection. Scanning, OCR and PDF export all run on the device, there is no account to create, and nothing is uploaded unless you switch on Google Drive backup yourself.</p>
+    <div class="cta">
+      <a class="btn" href="https://play.google.com/store/apps/details?id=com.craftingapps.scannera">Download Scannera</a>
+      <a class="btn ghost" href="/">Explore Scannera</a>
+    </div>
+    <p class="meta">Android 8.0 and later · Free to use · Optional one-time Pro upgrade</p>
+    <div class="hero-shot">
+      <img src="/assets/screenshots/1_en-US_ondevice.png" alt="Scannera onboarding explaining that scanning, OCR and PDF export all run on your device" width="1080" height="1920" fetchpriority="high" decoding="async">
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:24px">
+    <div class="strip">
+      <div><b>Offline</b><span>Capture, edit and export with no signal</span></div>
+      <div><b>On device</b><span>OCR and PDF creation run locally</span></div>
+      <div><b>0</b><span>Accounts required</span></div>
+      <div><b>Optional</b><span>Google Drive backup, off by default</span></div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="head">
+      <div class="eyebrow">How it works</div>
+      <h2>What makes Scannera an offline document scanner?</h2>
+      <p>“Offline” only means something if the work actually happens on your phone. In Scannera, it does.</p>
+    </div>
+    <div class="prose">
+      <p>Every step of a normal scanning session runs on your Android device, using the phone's own camera and processor. With the app installed you can put the phone in airplane mode and still complete a full document from capture to exported PDF:</p>
+      <ul>
+        <li><strong>Document capture</strong> — the camera preview and shutter, including the dedicated modes for documents, agreements, ID cards, licences, passports and business cards.</li>
+        <li><strong>Edge detection and perspective correction</strong> — page borders are found and the skew is straightened locally.</li>
+        <li><strong>Image filtering</strong> — Original, Grayscale, Black &amp; White, Magic Color and Auto Enhance are applied on the device.</li>
+        <li><strong>OCR</strong> — text recognition uses a model bundled with the app, so no page is sent away to be read.</li>
+        <li><strong>Annotation and signatures</strong> — drawing, highlighting, text, shapes, notes and signature placement.</li>
+        <li><strong>Watermarking</strong> — your own text is stamped onto exports before they leave the app.</li>
+        <li><strong>PDF creation and export</strong> — single and multi-page PDFs are assembled and written locally, then shared wherever you choose.</li>
+      </ul>
+      <p>A connection is only needed for two things: buying the one-time <a href="/#pro">Pro upgrade</a> through Google Play, and syncing Google Drive backup if you have turned it on. Scannera also sends anonymous crash reports and usage analytics — never your documents. The <a href="/privacy/">privacy policy</a> sets out exactly what that covers.</p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="head">
+      <div class="eyebrow">The case for it</div>
+      <h2>Why use an offline document scanner?</h2>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/><circle cx="12" cy="12" r="10"/></svg></div>
+        <h3>No internet required</h3>
+        <p>Aeroplanes, basements, site offices, classrooms, trains and patchy rural coverage are all ordinary places to need a scan. Scannera does not wait for a signal to finish the job.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6.5v5c0 4.6 3.2 8.6 8 9.5 4.8-.9 8-4.9 8-9.5v-5Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Better privacy</h3>
+        <p>Tax forms, medical letters, contracts and IDs are processed on your own hardware rather than being handed to someone else's scanning service to read.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <h3>No account required</h3>
+        <p>There is no sign-up, no email and no profile. Install the app and the scanner is ready — nothing is gated behind registration.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12Z"/></svg></div>
+        <h3>Fast local processing</h3>
+        <p>Pages are not uploaded and downloaded again to be enhanced or read, so a batch of scans finishes at the speed of your phone rather than your connection.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10.5" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/><path d="M12 15v2"/></svg></div>
+        <h3>Fewer places for data to sit</h3>
+        <p>Files that were never uploaded do not need to be tracked down and deleted later. What stays on your device stays under your control.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 18a4 4 0 0 0 .6-8A6 6 0 0 0 6.2 9.5 3.75 3.75 0 0 0 7 18"/><path d="M12 12v9m0 0-3-3m3 3 3-3"/></svg></div>
+        <h3>Cloud backup still available</h3>
+        <p>Offline processing does not mean no backup. Turn on Google Drive backup and finished PDFs copy to your own Google account, on Wi-Fi only if you prefer.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="head">
+      <div class="eyebrow">Features</div>
+      <h2>What you can do without a connection</h2>
+      <p>The tools that matter most to offline scanning, all part of the <a href="/">Scannera document scanner</a>.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8V5a2 2 0 0 1 2-2h3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M8 21H5a2 2 0 0 1-2-2v-3"/><path d="M3 12h18"/></svg></div>
+        <h3>Automatic document detection</h3>
+        <p>Page boundaries are found as you frame the shot, and perspective skew is corrected so a photo taken at an angle comes out square.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M4 8V6.5A1.5 1.5 0 0 1 5.5 5h2L9 3h6l1.5 2h2A1.5 1.5 0 0 1 20 6.5v10a1.5 1.5 0 0 1-1.5 1.5H16"/><path d="M4 12v7h8"/></svg></div>
+        <h3>Multi-page PDF scanning</h3>
+        <p>Batch mode captures page after page in one session, reviews them together, and exports the set as a single PDF. Free scans have a page limit per batch; Pro removes it.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></div>
+        <h3>Offline OCR</h3>
+        <p>Text is recognised with an OCR model bundled inside the app, so a scan can be turned into copyable text with no connection and no upload.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
+        <h3>PDF annotation and signatures</h3>
+        <p>Draw, highlight, add text, shapes, arrows, dates and sticky notes, and place a signature you drew, typed or photographed — on your scans or on PDFs you import.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M7 15 17 9M9 9h.01M15 15h.01"/></svg></div>
+        <h3>Custom watermarks</h3>
+        <p>Stamp your own text across exported PDFs and shared images — useful for marking a contract as a copy before you send it on.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3h-3zM20 20h1M17 21h-3"/></svg></div>
+        <h3>QR and barcode tools</h3>
+        <p>The camera reads standard QR code and barcode formats on device, and the generator turns any text or link into a QR code.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10.5" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/><path d="M12 15v2"/></svg></div>
+        <h3>App Lock</h3>
+        <p>Require your device screen lock — PIN, pattern, password or fingerprint — before the app will open, so a borrowed phone does not open your paperwork.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4L10 8h9.5A1.5 1.5 0 0 1 21 9.5v8A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5Z"/><path d="M12 15V10m0 0-2 2m2-2 2 2"/></svg></div>
+        <h3>Import and organise</h3>
+        <p>Pull in PDFs and images already on your device, sort everything into colour-coded folders, and find documents by name.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div>
+        <h3>Five capture filters</h3>
+        <p>Original, Grayscale, Black &amp; White, Magic Color and Auto Enhance clean up contrast and readability before the page is exported.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="head">
+      <div class="eyebrow">Text recognition</div>
+      <h2>Offline OCR on Android</h2>
+    </div>
+    <div class="prose">
+      <p>Scannera can recognise the text in a scanned page using an OCR model that ships inside the app. Because the model is on the device, recognition works with no connection and the page itself is never sent anywhere to be read.</p>
+      <p>The bundled model recognises Latin-script text, so it suits documents written in English and other languages using the Latin alphabet. It is not a universal, every-language engine, and — like any OCR — its results depend on the quality of the scan: a flat, well-lit, in-focus page reads far better than a creased receipt photographed in the dark. Expect to proofread the output rather than trust it blindly.</p>
+      <p>Once a page has been recognised, the extracted text can be copied and shared as plain text, so it can go straight into an email, a note or a document. One thing worth knowing: the in-app search matches document and folder names, not the recognised text inside your scans.</p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="band">
+      <div class="head">
+        <div class="eyebrow">Privacy</div>
+        <h2>Your documents stay on your device</h2>
+      </div>
+      <div class="prose">
+        <p>Scanning, editing and filtering, text recognition, annotation and signing, and PDF generation all happen locally on your Android phone. There is no account, no profile and no upload step in a normal scanning session — the file you export is written on your device and goes only where you send it.</p>
+        <p>There is one deliberate exception, and it is worth stating plainly. <strong>Google Drive backup is optional and off by default.</strong> If you turn it on, Scannera signs in to your Google account and copies your scanned PDFs to <em>your</em> Drive — automatically, and over Wi-Fi only if you prefer. It asks for access to the files it creates in your Drive, not the rest of your Drive. Nothing goes to a Scannera server; there isn't one for your documents.</p>
+        <p>Scannera is also not an app that never touches the internet. It uses a connection to verify a Pro purchase through Google Play, to sync Drive backups when you have enabled them, and to send anonymous crash reports and usage analytics that help fix problems across different Android devices. That diagnostic data contains no document content. The <a href="/privacy/">Scannera privacy policy</a> spells out each of these in detail.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="head">
+      <div class="eyebrow">Comparison</div>
+      <h2>Offline scanner vs cloud-based scanner</h2>
+      <p>Both approaches are legitimate, and they trade off differently. Here is roughly how they compare.</p>
+    </div>
+    <div class="table-scroll">
+      <table class="compare">
+        <caption>A general comparison of the two approaches. Individual apps differ — check what any specific scanner actually does.</caption>
+        <thead>
+          <tr>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">Offline processing</th>
+            <th scope="col">Cloud-based processing</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Internet required</th>
+            <td>Not needed for capture, editing, OCR or PDF export</td>
+            <td>Needed for the steps that run on the provider's servers</td>
+          </tr>
+          <tr>
+            <th scope="row">Document processing</th>
+            <td>Runs on your phone's own hardware</td>
+            <td>Runs on remote servers after the page is uploaded</td>
+          </tr>
+          <tr>
+            <th scope="row">Privacy considerations</th>
+            <td>Document content stays on the device unless you export or back it up</td>
+            <td>Document content is transmitted to, and handled by, a third party</td>
+          </tr>
+          <tr>
+            <th scope="row">Account requirement</th>
+            <td>Often none — Scannera needs none</td>
+            <td>Usually an account, since files are tied to it</td>
+          </tr>
+          <tr>
+            <th scope="row">Works in poor connectivity</th>
+            <td>Yes — speed depends on the device, not the signal</td>
+            <td>Degrades or stalls when the connection is weak</td>
+          </tr>
+          <tr>
+            <th scope="row">Cloud backup</th>
+            <td>Optional and separate from processing — in Scannera, your own Google Drive</td>
+            <td>Typically built in, and often the default place files live</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="head">
+      <div class="eyebrow">Use cases</div>
+      <h2>Who can use an offline document scanner?</h2>
+      <p>Students handing in assignments, professionals filing expenses, small businesses keeping their own records, travellers away from reliable data, teachers digitising handouts, office workers clearing a paper tray — and anyone whose paperwork is nobody else's business.</p>
+    </div>
+    <ul class="tags">
+      <li>Receipts</li>
+      <li>Invoices</li>
+      <li>Contracts</li>
+      <li>Assignments</li>
+      <li>Lecture notes</li>
+      <li>Forms</li>
+      <li>Business cards</li>
+      <li>ID documents</li>
+      <li>Certificates</li>
+      <li>Whiteboards</li>
+    </ul>
+  </section>
+
+  <section id="faq" class="wrap">
+    <div class="head">
+      <div class="eyebrow">FAQ</div>
+      <h2>Offline scanning, answered</h2>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>Does Scannera work without internet?</summary>
+        <p>Yes. Capture, edge detection, filtering, OCR, annotation, signing, watermarking and PDF export all work with no connection — you can complete a document in airplane mode. A connection is only needed to buy the one-time Pro upgrade through Google Play, to sync Google Drive backup if you have enabled it, and to send anonymous diagnostics.</p>
+      </details>
+      <details>
+        <summary>Can I create PDFs offline?</summary>
+        <p>Yes. Scanned pages are assembled and written into a PDF on your device, including multi-page documents captured in batch mode. Free scans are limited to a set number of pages per batch and Pro removes that limit, but neither the free nor the Pro export needs a connection.</p>
+      </details>
+      <details>
+        <summary>Does Scannera have offline OCR?</summary>
+        <p>Yes. Text recognition uses an OCR model bundled with the app, so it runs on the device with no upload. The bundled model covers Latin-script text, and accuracy depends on how clear the scan is — proofread anything important. Recognised text can be copied and shared as plain text.</p>
+      </details>
+      <details>
+        <summary>Do I need an account to use Scannera?</summary>
+        <p>No. There is no sign-up, no email and no profile — install the app and start scanning. A Google sign-in is only involved if you choose to turn on Drive backup.</p>
+      </details>
+      <details>
+        <summary>Are my documents uploaded anywhere?</summary>
+        <p>Not in normal use. Scanning, editing, OCR and PDF generation all happen on your device. The exception is Google Drive backup, which is off by default; when you enable it, your PDFs are copied to your own Google account and nowhere else, and Scannera can only see the files it creates there. Anonymous crash reports and usage analytics are sent, never your documents — see the <a href="/privacy/">privacy policy</a> for the detail.</p>
+      </details>
+      <details>
+        <summary>Can I annotate PDFs offline?</summary>
+        <p>Yes. Drawing, highlighting, text, shapes, arrows, dates, sticky notes and signatures all work without a connection, on scans you have just taken and on PDFs you import from your device.</p>
+      </details>
+      <details>
+        <summary>Is Scannera available for Android?</summary>
+        <p>Yes. Scannera runs on Android 8.0 and later and is available on Google Play. It is free to use, with an optional one-time Pro upgrade and no subscription.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="wrap final">
+    <h2>Scan offline. Keep the paperwork yours.</h2>
+    <p>Get <a href="/">Scannera for Android</a> and turn your phone into a document scanner that works with or without a signal.</p>
+    <div class="cta">
+      <a class="btn" href="https://play.google.com/store/apps/details?id=com.craftingapps.scannera">Download on Google Play</a>
+      <a class="btn ghost" href="/">Explore Scannera</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>© <span id="yr">2026</span> Crafting Apps · Scannera — document scanner for Android</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/#features">Features</a>
+      <a href="/#pro">Pricing</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="https://play.google.com/store/apps/details?id=com.craftingapps.scannera">Scannera on Google Play</a>
+      <a href="mailto:scannera.support@gmail.com">Email support</a>
+    </nav>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://scannera.in/offline-document-scanner-android/#webpage",
+      "url": "https://scannera.in/offline-document-scanner-android/",
+      "name": "Offline Document Scanner for Android | Scannera",
+      "description": "Scan documents, create PDFs and extract text offline with Scannera for Android. Your scans stay on your device with no account or cloud upload required.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://scannera.in/#website"
+      },
+      "about": {
+        "@id": "https://scannera.in/#app"
+      },
+      "primaryImageOfPage": "https://scannera.in/assets/screenshots/1_en-US_ondevice.png",
+      "breadcrumb": {
+        "@id": "https://scannera.in/offline-document-scanner-android/#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://scannera.in/offline-document-scanner-android/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Scannera",
+          "item": "https://scannera.in/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Offline document scanner for Android"
+        }
+      ]
+    },
+    {
+      "@type": [
+        "SoftwareApplication",
+        "MobileApplication"
+      ],
+      "@id": "https://scannera.in/#app",
+      "name": "Scannera",
+      "applicationCategory": "ProductivityApplication",
+      "applicationSubCategory": "Document Scanner",
+      "operatingSystem": "Android 8.0 and later",
+      "url": "https://scannera.in/",
+      "installUrl": "https://play.google.com/store/apps/details?id=com.craftingapps.scannera",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.craftingapps.scannera",
+      "image": "https://scannera.in/assets/icon.png",
+      "privacyPolicy": "https://scannera.in/privacy/",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://play.google.com/store/apps/details?id=com.craftingapps.scannera"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://scannera.in/offline-document-scanner-android/#faq",
+      "isPartOf": {
+        "@id": "https://scannera.in/offline-document-scanner-android/#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does Scannera work without internet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Capture, edge detection, filtering, OCR, annotation, signing, watermarking and PDF export all work with no connection — you can complete a document in airplane mode. A connection is only needed to buy the one-time Pro upgrade through Google Play, to sync Google Drive backup if you have enabled it, and to send anonymous diagnostics."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I create PDFs offline?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Scanned pages are assembled and written into a PDF on your device, including multi-page documents captured in batch mode. Free scans are limited to a set number of pages per batch and Pro removes that limit, but neither the free nor the Pro export needs a connection."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Scannera have offline OCR?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Text recognition uses an OCR model bundled with the app, so it runs on the device with no upload. The bundled model covers Latin-script text, and accuracy depends on how clear the scan is — proofread anything important. Recognised text can be copied and shared as plain text."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need an account to use Scannera?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. There is no sign-up, no email and no profile — install the app and start scanning. A Google sign-in is only involved if you choose to turn on Drive backup."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are my documents uploaded anywhere?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not in normal use. Scanning, editing, OCR and PDF generation all happen on your device. The exception is Google Drive backup, which is off by default; when you enable it, your PDFs are copied to your own Google account and nowhere else, and Scannera can only see the files it creates there. Anonymous crash reports and usage analytics are sent, never your documents."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I annotate PDFs offline?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Drawing, highlighting, text, shapes, arrows, dates, sticky notes and signatures all work without a connection, on scans you have just taken and on PDFs you import from your device."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Scannera available for Android?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Scannera runs on Android 8.0 and later and is available on Google Play. It is free to use, with an optional one-time Pro upgrade and no subscription."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
