@@ -356,7 +356,7 @@ footer a:hover{color:var(--title)}
       <div class="card">
         <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M4 8V6.5A1.5 1.5 0 0 1 5.5 5h2L9 3h6l1.5 2h2A1.5 1.5 0 0 1 20 6.5v10a1.5 1.5 0 0 1-1.5 1.5H16"/><path d="M4 12v7h8"/></svg></div>
         <h3>Multi-page PDF scanning</h3>
-        <p>Batch mode captures page after page in one session, reviews them together, and exports the set as a single PDF. Free scans have a page limit per batch; Pro removes it.</p>
+        <p>Batch mode captures page after page in one session, reviews them together, and exports the set as a single PDF. Free scans have a page limit per batch; Pro removes it. More on the <a href="/pdf-scanner-android/">PDF scanner</a>.</p>
       </div>
       <div class="card">
         <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></div>
@@ -404,7 +404,7 @@ footer a:hover{color:var(--title)}
     <div class="prose">
       <p>Scannera can recognise the text in a scanned page using an OCR model that ships inside the app. Because the model is on the device, recognition works with no connection and the page itself is never sent anywhere to be read.</p>
       <p>The bundled model recognises Latin-script text, so it suits documents written in English and other languages using the Latin alphabet. It is not a universal, every-language engine, and — like any OCR — its results depend on the quality of the scan: a flat, well-lit, in-focus page reads far better than a creased receipt photographed in the dark. Expect to proofread the output rather than trust it blindly.</p>
-      <p>Once a page has been recognised, the extracted text can be copied and shared as plain text, so it can go straight into an email, a note or a document. One thing worth knowing: the in-app search matches document and folder names, not the recognised text inside your scans.</p>
+      <p>Once a page has been recognised, the extracted text can be copied and shared as plain text, so it can go straight into an email, a note or a document. One thing worth knowing: the in-app search matches document and folder names, not the recognised text inside your scans. The <a href="/ocr-scanner-android/">OCR scanner</a> page goes further into how recognition works and where its limits are.</p>
     </div>
   </section>
 
@@ -417,7 +417,7 @@ footer a:hover{color:var(--title)}
       <div class="prose">
         <p>Scanning, editing and filtering, text recognition, annotation and signing, and PDF generation all happen locally on your Android phone. There is no account, no profile and no upload step in a normal scanning session — the file you export is written on your device and goes only where you send it.</p>
         <p>There is one deliberate exception, and it is worth stating plainly. <strong>Google Drive backup is optional and off by default.</strong> If you turn it on, Scannera signs in to your Google account and copies your scanned PDFs to <em>your</em> Drive — automatically, and over Wi-Fi only if you prefer. It asks for access to the files it creates in your Drive, not the rest of your Drive. Nothing goes to a Scannera server; there isn't one for your documents.</p>
-        <p>Scannera is also not an app that never touches the internet. It uses a connection to verify a Pro purchase through Google Play, to sync Drive backups when you have enabled them, and to send anonymous crash reports and usage analytics that help fix problems across different Android devices. That diagnostic data contains no document content. The <a href="/privacy/">Scannera privacy policy</a> spells out each of these in detail.</p>
+        <p>Scannera is also not an app that never touches the internet. It uses a connection to verify a Pro purchase through Google Play, to sync Drive backups when you have enabled them, and to send anonymous crash reports and usage analytics that help fix problems across different Android devices. That diagnostic data contains no document content. The <a href="/privacy/">Scannera privacy policy</a> spells out each of these in detail, and the <a href="/private-document-scanner/">private document scanner</a> page covers the architecture behind them.</p>
       </div>
     </div>
   </section>
@@ -663,7 +663,7 @@ footer a:hover{color:var(--title)}
           "name": "Are my documents uploaded anywhere?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Not in normal use. Scanning, editing, OCR and PDF generation all happen on your device. The exception is Google Drive backup, which is off by default; when you enable it, your PDFs are copied to your own Google account and nowhere else, and Scannera can only see the files it creates there. Anonymous crash reports and usage analytics are sent, never your documents."
+            "text": "Not in normal use. Scanning, editing, OCR and PDF generation all happen on your device. The exception is Google Drive backup, which is off by default; when you enable it, your PDFs are copied to your own Google account and nowhere else, and Scannera can only see the files it creates there. Anonymous crash reports and usage analytics are sent, never your documents \u2014 see the privacy policy for the detail."
           }
         },
         {

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OCR Scanner for Android | Scannera</title>
+<meta name="description" content="Extract text from scanned pages with Scannera's on-device OCR for Android. Recognition runs offline with no upload, and the text is yours to copy or share.">
+<link rel="canonical" href="https://scannera.in/ocr-scanner-android/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#F2F2F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/assets/icon.png">
+<link rel="apple-touch-icon" href="/assets/icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Scannera">
+<meta property="og:url" content="https://scannera.in/ocr-scanner-android/">
+<meta property="og:title" content="OCR Scanner for Android | Scannera">
+<meta property="og:description" content="Extract text from scanned pages with Scannera's on-device OCR for Android. Recognition runs offline, with no upload.">
+<meta property="og:image" content="https://scannera.in/assets/icon.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="The Scannera app icon">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OCR Scanner for Android | Scannera">
+<meta name="twitter:description" content="Extract text from scanned pages with Scannera's on-device OCR for Android. Recognition runs offline, with no upload.">
+<meta name="twitter:image" content="https://scannera.in/assets/icon.png">
+<meta name="twitter:image:alt" content="The Scannera app icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --brand:#007AFF;
+  --brand-strong:#0055B3;
+  --pro:#5856D6;
+  --bg:#F2F2F7;
+  --surface:#FFFFFF;
+  --surface-2:#E5E5EA;
+  --title:#000000;
+  --body:#3C3C43;
+  --hint:#8E8E93;
+  --border:rgba(60,60,67,.14);
+  --shadow:0 1px 2px rgba(0,0,0,.04), 0 12px 32px rgba(0,0,0,.07);
+  --radius:20px;
+  --maxw:1120px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --brand:#0A84FF;
+    --brand-strong:#CCE4FF;
+    --pro:#5E5CE6;
+    --bg:#000000;
+    --surface:#1C1C1E;
+    --surface-2:#2C2C2E;
+    --title:#FFFFFF;
+    --body:rgba(235,235,245,.62);
+    --hint:#8E8E93;
+    --border:rgba(235,235,245,.16);
+    --shadow:0 1px 2px rgba(0,0,0,.5), 0 12px 32px rgba(0,0,0,.55);
+  }
+}
+
+*{box-sizing:border-box}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:6px}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--body);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{color:var(--title);line-height:1.15;letter-spacing:-.022em;margin:0}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%;height:auto;display:block}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:24px;padding-right:24px}
+section{padding:88px 0}
+@media (max-width:720px){section{padding:60px 0}}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav .wrap{display:flex;align-items:center;gap:16px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--title);letter-spacing:-.02em}
+.brand:hover{text-decoration:none}
+.brand img{width:30px;height:30px;border-radius:8px}
+.nav nav{margin-left:auto;display:flex;align-items:center;gap:28px}
+.nav nav a{color:var(--body);font-size:15px;font-weight:500}
+.nav nav a:hover{color:var(--title)}
+.nav nav a.btn,.nav nav a.btn:hover{color:#fff;text-decoration:none}
+@media (max-width:720px){.nav nav a.hide-sm{display:none}}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 26px;border-radius:999px;font-weight:600;font-size:16px;
+  background:var(--brand);color:#fff;border:1px solid transparent;
+  transition:transform .15s ease, filter .15s ease;
+}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px);text-decoration:none}
+.btn.ghost{background:transparent;color:var(--title);border-color:var(--border)}
+.btn.sm{padding:9px 18px;font-size:15px}
+
+/* ---------- breadcrumb ---------- */
+.crumbs{font-size:14px;color:var(--hint);padding-top:26px}
+.crumbs a{color:var(--hint)}
+.crumbs span{padding:0 8px}
+
+/* ---------- hero ---------- */
+.hero{padding-top:34px;padding-bottom:24px;text-align:center}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 15px;border-radius:999px;
+  background:var(--surface);border:1px solid var(--border);
+  font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--body);
+}
+.pill .dot{width:7px;height:7px;border-radius:50%;background:#34C759}
+.hero h1{
+  margin:26px auto 0;max-width:20ch;
+  font-size:clamp(38px,6.4vw,68px);font-weight:800;letter-spacing:-.035em;
+}
+.hero h1 em{font-style:normal;color:var(--brand)}
+.hero p.lede{margin:22px auto 0;max-width:58ch;font-size:clamp(17px,2.2vw,21px)}
+.cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:34px}
+.meta{margin-top:18px;font-size:14px;color:var(--hint)}
+
+.hero-shot{
+  margin:56px auto 0;max-width:340px;
+  border-radius:28px;overflow:hidden;
+  border:1px solid var(--border);box-shadow:var(--shadow);
+}
+.hero-shot img{height:520px;object-fit:cover;object-position:top}
+@media (max-width:720px){.hero-shot{max-width:280px}.hero-shot img{height:430px}}
+
+/* ---------- strip ---------- */
+.strip{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--border);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;
+}
+.strip div{background:var(--surface);padding:26px 18px;text-align:center}
+.strip b{display:block;color:var(--title);font-size:24px;font-weight:700;letter-spacing:-.02em}
+.strip span{font-size:13px;color:var(--hint)}
+@media (max-width:720px){.strip{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- section heads ---------- */
+.head{max-width:680px;margin:0 auto 46px;text-align:center}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--brand)}
+.head h2{margin-top:12px;font-size:clamp(28px,4.2vw,42px);font-weight:800;letter-spacing:-.03em}
+.head p{margin-top:14px}
+
+/* ---------- prose ---------- */
+.prose{max-width:760px;margin:0 auto}
+.prose h3{font-size:20px;font-weight:700;margin-top:34px}
+.prose p{margin:14px 0 0;font-size:16.5px}
+.prose ul{margin:16px 0 0;padding-left:22px}
+.prose li{margin:8px 0;font-size:16.5px}
+
+/* ---------- cards ---------- */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.grid{grid-template-columns:1fr}}
+.card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);
+}
+.card .ico{
+  width:46px;height:46px;border-radius:13px;
+  display:grid;place-items:center;margin-bottom:18px;
+  background:color-mix(in srgb, var(--brand) 12%, var(--surface));
+  color:var(--brand);
+}
+.card .ico svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-size:19px;font-weight:700;letter-spacing:-.02em}
+.card p{margin:10px 0 0;font-size:15.5px}
+
+/* ---------- band ---------- */
+.band{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:28px;padding:56px 40px;box-shadow:var(--shadow);
+}
+.band .head{margin-bottom:34px}
+@media (max-width:760px){.band{padding:38px 24px}}
+
+/* ---------- comparison table ---------- */
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow)}
+table.compare{width:100%;min-width:620px;border-collapse:collapse;background:var(--surface);font-size:15.5px}
+table.compare caption{caption-side:bottom;padding:16px 20px;font-size:14px;color:var(--hint);text-align:left}
+table.compare th,table.compare td{padding:16px 20px;text-align:left;border-top:1px solid var(--border);vertical-align:top}
+table.compare thead th{border-top:0;color:var(--title);font-weight:700;font-size:15px;background:var(--surface-2)}
+table.compare tbody th{color:var(--title);font-weight:600;width:26%}
+
+/* ---------- use cases ---------- */
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px;padding:0;list-style:none}
+.tags li{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:999px;padding:8px 16px;font-size:14.5px;
+}
+
+/* ---------- faq ---------- */
+.faq{max-width:760px;margin:0 auto}
+details{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:18px 22px;margin-bottom:12px;
+}
+details summary{
+  cursor:pointer;list-style:none;font-weight:600;color:var(--title);
+  display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:16.5px;
+}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";color:var(--hint);font-size:22px;font-weight:400;line-height:1}
+details[open] summary::after{content:"−"}
+details p{margin:14px 0 0;font-size:15.5px}
+
+/* ---------- final cta ---------- */
+.final{text-align:center}
+.final h2{font-size:clamp(30px,4.6vw,46px);font-weight:800;letter-spacing:-.03em}
+.final p{margin:16px auto 0;max-width:50ch}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--border);padding:40px 0;font-size:14px;color:var(--hint)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+footer nav{display:flex;flex-wrap:wrap;gap:22px}
+footer a{color:var(--hint)}
+footer a:hover{color:var(--title)}
+
+/* ---------- numbered workflow steps ---------- */
+.steps{counter-reset:step;list-style:none;margin:26px 0 0;padding:0;display:grid;gap:16px}
+.steps li{position:relative;padding-left:54px;font-size:16.5px}
+.steps li::before{
+  counter-increment:step;content:counter(step);
+  position:absolute;left:0;top:1px;
+  width:34px;height:34px;border-radius:11px;display:grid;place-items:center;
+  background:color-mix(in srgb, var(--brand) 12%, var(--surface));
+  color:var(--brand);font-weight:700;font-size:15px;
+  border:1px solid var(--border);
+}
+.steps strong{color:var(--title);font-weight:700}
+
+/* ---------- inline figures ---------- */
+.shot{
+  margin:44px auto 0;max-width:300px;
+  border-radius:24px;overflow:hidden;
+  border:1px solid var(--border);box-shadow:var(--shadow);
+}
+.shot img{height:470px;object-fit:cover;object-position:top}
+.shot figcaption{padding:14px 18px;font-size:14px;color:var(--hint);background:var(--surface);border-top:1px solid var(--border)}
+.two-up{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:660px;margin:44px auto 0}
+.two-up figure{margin:0;border-radius:24px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow)}
+.two-up img{height:420px;object-fit:cover;object-position:top}
+.two-up figcaption{padding:14px 18px;font-size:14px;color:var(--hint);background:var(--surface);border-top:1px solid var(--border)}
+@media (max-width:560px){.two-up{grid-template-columns:1fr;max-width:300px}}
+.shot,.two-up figure{margin-left:auto;margin-right:auto}
+
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/icon.png" alt="">Scannera</a>
+    <nav>
+      <a href="/#features" class="hide-sm">Features</a>
+      <a href="/#privacy" class="hide-sm">Privacy</a>
+      <a href="/#pro" class="hide-sm">Pro</a>
+      <a class="btn sm" href="https://play.google.com/store/apps/details?id=com.craftingapps.scannera">Get the app</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <nav class="wrap crumbs" aria-label="Breadcrumb">
+    <a href="/">Scannera</a><span aria-hidden="true">/</span>OCR scanner for Android
+  </nav>
+
+  <section class="hero wrap">
+    <span class="pill"><span class="dot"></span>Recognition runs on your phone</span>
+    <h1><em>OCR Scanner</em> for Android</h1>
+    <p class="lede">Scannera reads the text on a scanned page using an OCR model bundled inside the app, so recognition happens on your phone with no upload and no connection. The result comes back as plain text you can copy, share or paste anywhere.</p>
+    <div class="cta">
+      <a class="btn" href="https://play.google.com/store/apps/details?id=com.craftingapps.scannera">Download Scannera</a>
+      <a class="btn ghost" href="/">Explore Scannera</a>
+    </div>
+    <p class="meta">Android 8.0 and later · Free to use · Optional one-time Pro upgrade</p>
+    <div class="hero-shot">
+      <img src="/assets/screenshots/3_en-US_ocr.png" alt="Offline OCR in Scannera: recognised text selected on a scanned invoice, with a Copy option" width="1080" height="1920" fetchpriority="high" decoding="async">
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:24px">
+    <div class="strip">
+      <div><b>On device</b><span>Recognition runs on your phone</span></div>
+      <div><b>Offline</b><span>No connection, no upload</span></div>
+      <div><b>Latin</b><span>Script covered by the bundled model</span></div>
+      <div><b>Plain text</b><span>Copy or share the result</span></div>
+    </div>
+  </section>
+
+
+  <section class="wrap">
+    <div class="head">
+      <div class="eyebrow">The basics</div>
+      <h2>What is an OCR scanner?</h2>
+    </div>
+    <div class="prose">
+      <p>When you photograph a page, your phone stores a picture of some words. It has no idea what they say — to the software, the sentence is just a pattern of light and dark, no different from a photograph of a tree.</p>
+      <p>OCR, short for optical character recognition, is the step that closes that gap. It looks at the shapes on the page, works out which letters they are, and hands back actual text — characters you can select, copy, paste and search rather than pixels you can only look at.</p>
+      <p>An OCR scanner is simply a scanner with that step built in. You point it at a printed page, and instead of only getting an image back, you get the words too.</p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="head">
+      <div class="eyebrow">On device</div>
+      <h2>OCR that works offline</h2>
+      <p>This is the part that makes Scannera's text recognition different from most of what you will find.</p>
+    </div>
+    <div class="prose">
+      <p>A great many OCR apps are a thin shell around a web service: your page is uploaded, recognised on someone else's servers, and the text is sent back. That works, but it means every document you read has to travel, and nothing happens at all when the signal drops.</p>
+      <p>Scannera ships the recognition model inside the app. The work happens on your phone's own processor, which has two consequences worth stating plainly:</p>
+      <ul>
+        <li><strong>It works with no connection.</strong> You can recognise text in airplane mode, in a basement, or on a train going through a tunnel.</li>
+        <li><strong>The page does not go anywhere.</strong> There is no upload step in recognition, because there is nothing to upload to.</li>
+      </ul>
+      <p>The trade-off is that the model has to be small enough to ship with an app, which is what shapes the limitations further down this page. The <a href="/offline-document-scanner-android/">offline document scanner</a> page covers which other parts of Scannera work the same way.</p>
+    </div>
+    <figure class="shot">
+      <img src="/assets/screenshots/3_en-US_ocr.png" alt="Offline OCR in Scannera: recognised text selected on a scanned invoice, with a Copy option" width="1080" height="1920" loading="lazy" decoding="async">
+      <figcaption>Recognised text selected on a scanned invoice, ready to copy.</figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap">
+    <div class="head">
+      <div class="eyebrow">The workflow</div>
+      <h2>Extract text from scanned documents</h2>
+    </div>
+    <div class="prose">
+      <ol class="steps">
+        <li><strong>Scan or import the page.</strong> Capture it with the camera, or bring in a PDF or image already on your device. Edge detection and perspective correction straighten it first, which matters more for recognition than people expect.</li>
+        <li><strong>Run recognition.</strong> The bundled model reads the page on your phone. No upload, no waiting on a server.</li>
+        <li><strong>Review the result.</strong> Read what came back against the page. OCR is a best effort, not a guarantee, and this is the step people skip.</li>
+        <li><strong>Copy or share.</strong> Take the recognised text out as plain text — into an email, a note, a message, or anywhere else you need the words rather than the picture.</li>
+      </ol>
+      <p>The scan itself is unaffected by any of this. You still have the <a href="/pdf-scanner-android/">PDF</a> of the page, filtered and annotated as usual; the recognised text is something you get in addition to it, not instead of it.</p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="band">
+      <div class="head">
+        <div class="eyebrow">Privacy</div>
+        <h2>OCR without uploading your documents</h2>
+      </div>
+      <div class="prose">
+        <p>The documents worth running OCR on are rarely trivial — invoices with account numbers, letters from a doctor, contracts, forms with your address on them. Recognition happening on the device means those pages are read where they already are, rather than being sent somewhere to be read.</p>
+        <p>It would be overstating it to say nothing ever leaves your phone, so here is the honest version. Scannera uses the network in three places, none of which is text recognition: verifying a Pro purchase through Google Play, syncing Google Drive backup when you have turned it on, and sending anonymous crash reports and usage analytics. That diagnostic data contains no document content.</p>
+        <p>Google Drive backup is optional and off by default, and when enabled it copies files to your own Google account. The <a href="/private-document-scanner/">private document scanner</a> page goes through the architecture, and the <a href="/privacy/">privacy policy</a> states each network use in full.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="head">
+      <div class="eyebrow">Being straight with you</div>
+      <h2>OCR limitations</h2>
+      <p>Text recognition is genuinely useful and genuinely imperfect. Knowing where the edges are saves you a bad surprise.</p>
+    </div>
+    <div class="prose">
+      <h3>The bundled model covers Latin script</h3>
+      <p>Recognition uses a Latin-script model shipped inside the app. That covers English and the other languages written with the Latin alphabet. It is not a universal, every-language engine, and Scannera does not claim to recognise scripts the bundled model was not built for.</p>
+      <h3>Results depend on the scan</h3>
+      <p>A flat, well-lit, in-focus page of printed text reads far better than a creased receipt photographed in dim light at an angle. Most disappointing OCR results are really disappointing capture results — it is worth taking the shot again rather than fighting the output.</p>
+      <h3>No accuracy figure is claimed</h3>
+      <p>You will see scanning apps advertise a recognition accuracy percentage. Scannera does not, because the honest answer depends entirely on the page in front of you. Treat the output as a fast, useful draft and proofread anything that matters — a figure on an invoice, a reference number, a name.</p>
+      <h3>Search matches names, not recognised text</h3>
+      <p>This one catches people out, so it is worth being explicit: the in-app search looks at document and folder names. It does not search the text recognised inside your scans. If you want to find a document later by something written on it, put that in the document name when you save it.</p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="head">
+      <div class="eyebrow">Use cases</div>
+      <h2>What people extract text from</h2>
+      <p>Anywhere retyping is the slow part of the job — pulling a figure off an invoice, lifting a paragraph out of a printed report, getting notes into something you can edit.</p>
+    </div>
+    <ul class="tags">
+      <li>Invoices</li>
+      <li>Receipts</li>
+      <li>Printed documents</li>
+      <li>Notes</li>
+      <li>Forms</li>
+      <li>Business documents</li>
+      <li>Reports</li>
+      <li>Business cards</li>
+    </ul>
+  </section>
+
+
+  <section id="faq" class="wrap">
+    <div class="head">
+      <div class="eyebrow">FAQ</div>
+      <h2>Text recognition, answered</h2>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>Does Scannera have OCR?</summary>
+        <p>Yes. Scannera can recognise the text on a scanned page and return it as plain text you can copy or share. Recognition uses a model bundled inside the app rather than a web service.</p>
+      </details>
+      <details>
+        <summary>Does the OCR work offline?</summary>
+        <p>Yes. Because the recognition model ships inside the app, text recognition runs on your phone with no connection and no upload. You can recognise text in airplane mode.</p>
+      </details>
+      <details>
+        <summary>Which languages does the OCR support?</summary>
+        <p>The bundled model is a Latin-script model, so it covers English and other languages written with the Latin alphabet. Scannera does not claim to recognise scripts the bundled model was not built for.</p>
+      </details>
+      <details>
+        <summary>How accurate is the text recognition?</summary>
+        <p>Scannera does not publish an accuracy figure, because the honest answer depends on the page. A flat, well-lit, in-focus page of printed text reads far better than a creased receipt photographed in dim light. Treat the output as a fast draft and proofread anything that matters.</p>
+      </details>
+      <details>
+        <summary>Are my documents uploaded for text recognition?</summary>
+        <p>No. Recognition happens on the device, so there is no upload step. Scannera does use the network in three other places: verifying a Pro purchase through Google Play, syncing Google Drive backup if you have enabled it, and sending anonymous crash reports and usage analytics that contain no document content.</p>
+      </details>
+      <details>
+        <summary>What can I do with the recognised text?</summary>
+        <p>The extracted text can be copied and shared as plain text, so it can go straight into an email, a note, a message or a document. The scanned page itself is unaffected — you keep the PDF as well as the words.</p>
+      </details>
+      <details>
+        <summary>Can I search inside my scanned documents?</summary>
+        <p>Not by their contents. The in-app search matches document and folder names, not the text recognised inside your scans. If you want to find a document later by something written on it, include that in the document name when you save it.</p>
+      </details>
+      <details>
+        <summary>Can I run OCR on a PDF I already have?</summary>
+        <p>You can import existing PDFs and images from your device into Scannera and work with them alongside your scans. Recognition runs on the device either way, with no upload.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="wrap final">
+    <h2>Get the words, not just the picture.</h2>
+    <p>Install <a href="/">Scannera for Android</a> and pull text off a printed page without sending it anywhere.</p>
+    <div class="cta">
+      <a class="btn" href="https://play.google.com/store/apps/details?id=com.craftingapps.scannera">Download on Google Play</a>
+      <a class="btn ghost" href="/">Explore Scannera</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>© <span id="yr">2026</span> Crafting Apps · Scannera — document scanner for Android</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/#features">Features</a>
+      <a href="/#pro">Pricing</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="https://play.google.com/store/apps/details?id=com.craftingapps.scannera">Scannera on Google Play</a>
+      <a href="mailto:scannera.support@gmail.com">Email support</a>
+    </nav>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://scannera.in/ocr-scanner-android/#webpage",
+      "url": "https://scannera.in/ocr-scanner-android/",
+      "name": "OCR Scanner for Android | Scannera",
+      "description": "Extract text from scanned pages with Scannera's on-device OCR for Android. Recognition runs offline with no upload, and the text is yours to copy or share.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://scannera.in/#website"
+      },
+      "about": {
+        "@id": "https://scannera.in/#app"
+      },
+      "primaryImageOfPage": "https://scannera.in/assets/screenshots/3_en-US_ocr.png",
+      "breadcrumb": {
+        "@id": "https://scannera.in/ocr-scanner-android/#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://scannera.in/ocr-scanner-android/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Scannera",
+          "item": "https://scannera.in/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "OCR scanner for Android"
+        }
+      ]
+    },
+    {
+      "@type": [
+        "SoftwareApplication",
+        "MobileApplication"
+      ],
+      "@id": "https://scannera.in/#app",
+      "name": "Scannera",
+      "applicationCategory": "ProductivityApplication",
+      "applicationSubCategory": "Document Scanner",
+      "operatingSystem": "Android 8.0 and later",
+      "url": "https://scannera.in/",
+      "installUrl": "https://play.google.com/store/apps/details?id=com.craftingapps.scannera",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.craftingapps.scannera",
+      "image": "https://scannera.in/assets/icon.png",
+      "privacyPolicy": "https://scannera.in/privacy/",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://play.google.com/store/apps/details?id=com.craftingapps.scannera"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://scannera.in/ocr-scanner-android/#faq",
+      "isPartOf": {
+        "@id": "https://scannera.in/ocr-scanner-android/#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does Scannera have OCR?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Scannera can recognise the text on a scanned page and return it as plain text you can copy or share. Recognition uses a model bundled inside the app rather than a web service."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the OCR work offline?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Because the recognition model ships inside the app, text recognition runs on your phone with no connection and no upload. You can recognise text in airplane mode."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which languages does the OCR support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The bundled model is a Latin-script model, so it covers English and other languages written with the Latin alphabet. Scannera does not claim to recognise scripts the bundled model was not built for."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How accurate is the text recognition?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Scannera does not publish an accuracy figure, because the honest answer depends on the page. A flat, well-lit, in-focus page of printed text reads far better than a creased receipt photographed in dim light. Treat the output as a fast draft and proofread anything that matters."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are my documents uploaded for text recognition?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Recognition happens on the device, so there is no upload step. Scannera does use the network in three other places: verifying a Pro purchase through Google Play, syncing Google Drive backup if you have enabled it, and sending anonymous crash reports and usage analytics that contain no document content."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What can I do with the recognised text?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The extracted text can be copied and shared as plain text, so it can go straight into an email, a note, a message or a document. The scanned page itself is unaffected — you keep the PDF as well as the words."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I search inside my scanned documents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not by their contents. The in-app search matches document and folder names, not the text recognised inside your scans. If you want to find a document later by something written on it, include that in the document name when you save it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I run OCR on a PDF I already have?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can import existing PDFs and images from your device into Scannera and work with them alongside your scans. Recognition runs on the device either way, with no upload."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
