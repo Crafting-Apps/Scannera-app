@@ -32,211 +32,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<style>
-:root{
-  --brand:#007AFF;
-  --brand-strong:#0055B3;
-  --pro:#5856D6;
-  --bg:#F2F2F7;
-  --surface:#FFFFFF;
-  --surface-2:#E5E5EA;
-  --title:#000000;
-  --body:#3C3C43;
-  --hint:#8E8E93;
-  --border:rgba(60,60,67,.14);
-  --shadow:0 1px 2px rgba(0,0,0,.04), 0 12px 32px rgba(0,0,0,.07);
-  --radius:20px;
-  --maxw:1120px;
-}
-@media (prefers-color-scheme: dark){
-  :root{
-    --brand:#0A84FF;
-    --brand-strong:#CCE4FF;
-    --pro:#5E5CE6;
-    --bg:#000000;
-    --surface:#1C1C1E;
-    --surface-2:#2C2C2E;
-    --title:#FFFFFF;
-    --body:rgba(235,235,245,.62);
-    --hint:#8E8E93;
-    --border:rgba(235,235,245,.16);
-    --shadow:0 1px 2px rgba(0,0,0,.5), 0 12px 32px rgba(0,0,0,.55);
-  }
-}
-
-*{box-sizing:border-box}
-:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:6px}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--body);
-  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  font-size:17px;
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-}
-h1,h2,h3{color:var(--title);line-height:1.15;letter-spacing:-.022em;margin:0}
-a{color:var(--brand);text-decoration:none}
-a:hover{text-decoration:underline}
-img{max-width:100%;height:auto;display:block}
-
-.wrap{max-width:var(--maxw);margin:0 auto;padding-left:24px;padding-right:24px}
-section{padding:88px 0}
-@media (max-width:720px){section{padding:60px 0}}
-
-/* ---------- nav ---------- */
-.nav{
-  position:sticky;top:0;z-index:50;
-  background:color-mix(in srgb, var(--bg) 82%, transparent);
-  backdrop-filter:saturate(180%) blur(20px);
-  -webkit-backdrop-filter:saturate(180%) blur(20px);
-  border-bottom:1px solid var(--border);
-}
-.nav .wrap{display:flex;align-items:center;gap:16px;height:60px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--title);letter-spacing:-.02em}
-.brand:hover{text-decoration:none}
-.brand img{width:30px;height:30px;border-radius:8px}
-.nav nav{margin-left:auto;display:flex;align-items:center;gap:28px}
-.nav nav a{color:var(--body);font-size:15px;font-weight:500}
-.nav nav a:hover{color:var(--title)}
-.nav nav a.btn,.nav nav a.btn:hover{color:#fff;text-decoration:none}
-@media (max-width:720px){.nav nav a.hide-sm{display:none}}
-
-/* ---------- buttons ---------- */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:14px 26px;border-radius:999px;font-weight:600;font-size:16px;
-  background:var(--brand);color:#fff;border:1px solid transparent;
-  transition:transform .15s ease, filter .15s ease;
-}
-.btn:hover{filter:brightness(1.08);transform:translateY(-1px);text-decoration:none}
-.btn.ghost{background:transparent;color:var(--title);border-color:var(--border)}
-.btn.sm{padding:9px 18px;font-size:15px}
-
-/* ---------- breadcrumb ---------- */
-.crumbs{font-size:14px;color:var(--hint);padding-top:26px}
-.crumbs a{color:var(--hint)}
-.crumbs span{padding:0 8px}
-
-/* ---------- hero ---------- */
-.hero{padding-top:34px;padding-bottom:24px;text-align:center}
-.pill{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:7px 15px;border-radius:999px;
-  background:var(--surface);border:1px solid var(--border);
-  font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--body);
-}
-.pill .dot{width:7px;height:7px;border-radius:50%;background:#34C759}
-.hero h1{
-  margin:26px auto 0;max-width:20ch;
-  font-size:clamp(38px,6.4vw,68px);font-weight:800;letter-spacing:-.035em;
-}
-.hero h1 em{font-style:normal;color:var(--brand)}
-.hero p.lede{margin:22px auto 0;max-width:58ch;font-size:clamp(17px,2.2vw,21px)}
-.cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:34px}
-.meta{margin-top:18px;font-size:14px;color:var(--hint)}
-
-.hero-shot{
-  margin:56px auto 0;max-width:340px;
-  border-radius:28px;overflow:hidden;
-  border:1px solid var(--border);box-shadow:var(--shadow);
-}
-.hero-shot img{height:520px;object-fit:cover;object-position:top}
-@media (max-width:720px){.hero-shot{max-width:280px}.hero-shot img{height:430px}}
-
-/* ---------- strip ---------- */
-.strip{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-  background:var(--border);border:1px solid var(--border);
-  border-radius:var(--radius);overflow:hidden;
-}
-.strip div{background:var(--surface);padding:26px 18px;text-align:center}
-.strip b{display:block;color:var(--title);font-size:24px;font-weight:700;letter-spacing:-.02em}
-.strip span{font-size:13px;color:var(--hint)}
-@media (max-width:720px){.strip{grid-template-columns:repeat(2,1fr)}}
-
-/* ---------- section heads ---------- */
-.head{max-width:680px;margin:0 auto 46px;text-align:center}
-.eyebrow{font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--brand)}
-.head h2{margin-top:12px;font-size:clamp(28px,4.2vw,42px);font-weight:800;letter-spacing:-.03em}
-.head p{margin-top:14px}
-
-/* ---------- prose ---------- */
-.prose{max-width:760px;margin:0 auto}
-.prose h3{font-size:20px;font-weight:700;margin-top:34px}
-.prose p{margin:14px 0 0;font-size:16.5px}
-.prose ul{margin:16px 0 0;padding-left:22px}
-.prose li{margin:8px 0;font-size:16.5px}
-
-/* ---------- cards ---------- */
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-@media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:600px){.grid{grid-template-columns:1fr}}
-.card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);
-}
-.card .ico{
-  width:46px;height:46px;border-radius:13px;
-  display:grid;place-items:center;margin-bottom:18px;
-  background:color-mix(in srgb, var(--brand) 12%, var(--surface));
-  color:var(--brand);
-}
-.card .ico svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.card h3{font-size:19px;font-weight:700;letter-spacing:-.02em}
-.card p{margin:10px 0 0;font-size:15.5px}
-
-/* ---------- band ---------- */
-.band{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:28px;padding:56px 40px;box-shadow:var(--shadow);
-}
-.band .head{margin-bottom:34px}
-@media (max-width:760px){.band{padding:38px 24px}}
-
-/* ---------- comparison table ---------- */
-.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow)}
-table.compare{width:100%;min-width:620px;border-collapse:collapse;background:var(--surface);font-size:15.5px}
-table.compare caption{caption-side:bottom;padding:16px 20px;font-size:14px;color:var(--hint);text-align:left}
-table.compare th,table.compare td{padding:16px 20px;text-align:left;border-top:1px solid var(--border);vertical-align:top}
-table.compare thead th{border-top:0;color:var(--title);font-weight:700;font-size:15px;background:var(--surface-2)}
-table.compare tbody th{color:var(--title);font-weight:600;width:26%}
-
-/* ---------- use cases ---------- */
-.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px;padding:0;list-style:none}
-.tags li{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:999px;padding:8px 16px;font-size:14.5px;
-}
-
-/* ---------- faq ---------- */
-.faq{max-width:760px;margin:0 auto}
-details{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:16px;padding:18px 22px;margin-bottom:12px;
-}
-details summary{
-  cursor:pointer;list-style:none;font-weight:600;color:var(--title);
-  display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:16.5px;
-}
-details summary::-webkit-details-marker{display:none}
-details summary::after{content:"+";color:var(--hint);font-size:22px;font-weight:400;line-height:1}
-details[open] summary::after{content:"−"}
-details p{margin:14px 0 0;font-size:15.5px}
-
-/* ---------- final cta ---------- */
-.final{text-align:center}
-.final h2{font-size:clamp(30px,4.6vw,46px);font-weight:800;letter-spacing:-.03em}
-.final p{margin:16px auto 0;max-width:50ch}
-
-/* ---------- footer ---------- */
-footer{border-top:1px solid var(--border);padding:40px 0;font-size:14px;color:var(--hint)}
-footer .wrap{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
-footer nav{display:flex;flex-wrap:wrap;gap:22px}
-footer a{color:var(--hint)}
-footer a:hover{color:var(--title)}
-</style>
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 
@@ -244,9 +40,9 @@ footer a:hover{color:var(--title)}
   <div class="wrap">
     <a class="brand" href="/"><img src="/assets/icon.png" alt="">Scannera</a>
     <nav>
-      <a href="/#features" class="hide-sm">Features</a>
+      <a href="/#how" class="hide-sm">Features</a>
       <a href="/#privacy" class="hide-sm">Privacy</a>
-      <a href="/#pro" class="hide-sm">Pro</a>
+      <a href="/#pricing" class="hide-sm">Pricing</a>
       <a class="btn sm" href="https://play.google.com/store/apps/details?id=com.craftingapps.scannera">Get the app</a>
     </nav>
   </div>
@@ -268,7 +64,7 @@ footer a:hover{color:var(--title)}
     </div>
     <p class="meta">Android 8.0 and later · Free to use · Optional one-time Pro upgrade</p>
     <div class="hero-shot">
-      <img src="/assets/screenshots/1_en-US_ondevice.png" alt="Scannera onboarding explaining that scanning, OCR and PDF export all run on your device" width="1080" height="1920" fetchpriority="high" decoding="async">
+      <img src="/assets/ui/privacy.png" alt="Scannera onboarding explaining that scanning, OCR and PDF export all run on your device" width="731" height="1384" fetchpriority="high" decoding="async">
     </div>
   </section>
 
@@ -298,7 +94,7 @@ footer a:hover{color:var(--title)}
         <li><strong>Watermarking.</strong> Your own text is stamped onto exports before they leave the app.</li>
         <li><strong>PDF creation and export.</strong> Single and multi-page PDFs are assembled and written locally, then shared wherever you choose.</li>
       </ul>
-      <p>A connection is only needed for two things: buying the one-time <a href="/#pro">Pro upgrade</a> through Google Play, and syncing Google Drive backup if you have turned it on. Scannera also sends anonymous crash reports and usage analytics, never your documents. The <a href="/privacy/">privacy policy</a> sets out exactly what that covers.</p>
+      <p>A connection is only needed for two things: buying the one-time <a href="/#pricing">Pro upgrade</a> through Google Play, and syncing Google Drive backup if you have turned it on. Scannera also sends anonymous crash reports and usage analytics, never your documents. The <a href="/privacy/">privacy policy</a> sets out exactly what that covers.</p>
     </div>
   </section>
 
@@ -386,7 +182,7 @@ footer a:hover{color:var(--title)}
       <div class="card">
         <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4L10 8h9.5A1.5 1.5 0 0 1 21 9.5v8A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5Z"/><path d="M12 15V10m0 0-2 2m2-2 2 2"/></svg></div>
         <h3>Import and organise</h3>
-        <p>Pull in PDFs and images already on your device, sort everything into colour-coded folders, and find documents by name.</p>
+        <p>Pull in PDFs and images already on your device, sort everything into colour-coded folders, and find documents by the words inside them.</p>
       </div>
       <div class="card">
         <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div>
@@ -403,8 +199,8 @@ footer a:hover{color:var(--title)}
     </div>
     <div class="prose">
       <p>Scannera can recognise the text in a scanned page using an OCR model that ships inside the app. Because the model is on the device, recognition works with no connection and the page itself is never sent anywhere to be read.</p>
-      <p>The bundled model recognises Latin-script text, so it suits documents written in English and other languages using the Latin alphabet. It is not a universal, every-language engine, and like any OCR its results depend on the quality of the scan: a flat, well-lit, in-focus page reads far better than a creased receipt photographed in the dark. Expect to proofread the output rather than trust it blindly.</p>
-      <p>Once a page has been recognised, the extracted text can be copied and shared as plain text, so it can go straight into an email, a note or a document. One thing worth knowing: the in-app search matches document and folder names, not the recognised text inside your scans. The <a href="/ocr-scanner-android/">OCR scanner</a> page goes further into how recognition works and where its limits are.</p>
+      <p>The bundled model recognises Latin-script text along with Hindi and Marathi, Chinese, Japanese and Korean. It is not a universal, every-language engine, and like any OCR its results depend on the quality of the scan: a flat, well-lit, in-focus page reads far better than a creased receipt photographed in the dark. Expect to proofread the output rather than trust it blindly.</p>
+      <p>Once a page has been recognised, the extracted text can be copied and shared as plain text, so it can go straight into an email, a note or a document. The in-app search also runs across the recognised text inside your scans, not just document and folder names. The <a href="/ocr-scanner-android/">OCR scanner</a> page goes further into how recognition works and where its limits are.</p>
     </div>
   </section>
 
@@ -510,7 +306,7 @@ footer a:hover{color:var(--title)}
       </details>
       <details>
         <summary>Does Scannera have offline OCR?</summary>
-        <p>Yes. Text recognition uses an OCR model bundled with the app, so it runs on the device with no upload. The bundled model covers Latin-script text, and accuracy depends on how clear the scan is, so proofread anything important. Recognised text can be copied and shared as plain text.</p>
+        <p>Yes. Text recognition uses an OCR model bundled with the app, so it runs on the device with no upload. The bundled model covers Latin-script text plus Hindi and Marathi, Chinese, Japanese and Korean, and accuracy depends on how clear the scan is, so proofread anything important. Recognised text can be copied, shared and searched as plain text.</p>
       </details>
       <details>
         <summary>Do I need an account to use Scannera?</summary>
@@ -531,7 +327,7 @@ footer a:hover{color:var(--title)}
     </div>
   </section>
 
-  <section class="wrap final">
+  <section class="wrap final dark">
     <h2>Scan offline. Keep the paperwork yours.</h2>
     <p>Get <a href="/">Scannera for Android</a> and turn your phone into a document scanner that works with or without a signal.</p>
     <div class="cta">
@@ -544,14 +340,18 @@ footer a:hover{color:var(--title)}
 
 <footer>
   <div class="wrap">
-    <div>© <span id="yr">2026</span> Crafting Apps · Scannera · document scanner for Android</div>
+    <div>© 2026 Crafting Apps · Scannera · document scanner for Android</div>
     <nav>
       <a href="/">Home</a>
-      <a href="/#features">Features</a>
-      <a href="/#pro">Pricing</a>
+      <a href="/#how">Features</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/pdf-scanner-android/">PDF scanner</a>
+      <a href="/ocr-scanner-android/">OCR scanner</a>
+      <a href="/private-document-scanner/">Private scanner</a>
+      <a href="/offline-document-scanner-android/">Offline scanning</a>
       <a href="/privacy/">Privacy Policy</a>
-      <a href="https://play.google.com/store/apps/details?id=com.craftingapps.scannera">Scannera on Google Play</a>
-      <a href="https://www.youtube.com/@ScanneraApp">Scannera on YouTube</a>
+      <a href="https://play.google.com/store/apps/details?id=com.craftingapps.scannera">Google Play</a>
+      <a href="https://www.youtube.com/@ScanneraApp">YouTube</a>
       <a href="mailto:scannera.support@gmail.com">Email support</a>
     </nav>
   </div>
@@ -648,7 +448,7 @@ footer a:hover{color:var(--title)}
           "name": "Does Scannera have offline OCR?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Text recognition uses an OCR model bundled with the app, so it runs on the device with no upload. The bundled model covers Latin-script text, and accuracy depends on how clear the scan is, so proofread anything important. Recognised text can be copied and shared as plain text."
+            "text": "Yes. Text recognition uses an OCR model bundled with the app, so it runs on the device with no upload. The bundled model covers Latin-script text plus Hindi and Marathi, Chinese, Japanese and Korean, and accuracy depends on how clear the scan is, so proofread anything important. Recognised text can be copied, shared and searched as plain text."
           }
         },
         {
