@@ -206,7 +206,7 @@ section{padding:88px 0}
   display:grid;grid-template-columns:1fr 360px;gap:72px;align-items:center;
   padding:70px 0;border-top:1px solid var(--border);
 }
-.pillar:first-of-type{border-top:0;padding-top:0}
+.pillar:first-of-type,.tour-phone + .pillar{border-top:0;padding-top:0}
 .pillar.flip .pillar-art{order:-1}
 .pillar-copy h3{font-family:var(--display);font-size:clamp(26px,3.4vw,38px);font-weight:700;letter-spacing:-.01em}
 .pillar-copy > p{margin:16px 0 0;font-size:18px;max-width:46ch}
@@ -429,6 +429,70 @@ table.compare tbody th{color:var(--title);font-weight:600;width:26%}
 .final.dark .btn.ghost{color:#F7EFE4;border-color:rgba(247,239,228,.28)}
 .final.dark p a{color:#F7EFE4;text-decoration:underline;text-underline-offset:3px}
 @media (max-width:720px){.final.dark{padding:60px 22px;margin-bottom:56px}}
+
+/* ---------- how it works: the pinned phone tour ---------- */
+/* Wide screens with script only (html.js is set inline in the head, before
+   first paint). The shared phone sticks beside the steps and swaps screens;
+   each step dims until it reaches the middle of the viewport. */
+.tour-phone{display:none}
+@media (min-width:901px){
+  .js .tour{display:grid;grid-template-columns:1fr 360px;column-gap:72px}
+  .js .tour > .pillar{
+    grid-column:1;display:flex;align-items:center;
+    min-height:78vh;padding:40px 0;border-top:0;
+  }
+  .js .tour > .pillar .pillar-art{display:none}
+  .js .tour > .pillar .pillar-copy{opacity:.32;transition:opacity .6s var(--ease)}
+  .js .tour > .pillar.is-active .pillar-copy{opacity:1}
+  .js .tour-phone{
+    display:block;grid-column:2;grid-row:1 / span 3;align-self:start;
+    position:sticky;top:max(84px, calc(50vh - 316px));
+    width:290px;margin:0 auto;
+  }
+  .tour-phone .phone{display:grid}
+  .tour-phone img{
+    grid-area:1/1;opacity:0;transform:scale(.97);
+    transition:opacity .6s var(--ease), transform .6s var(--ease);
+  }
+  .tour-phone[data-step="0"] img:nth-child(1),
+  .tour-phone[data-step="1"] img:nth-child(2),
+  .tour-phone[data-step="2"] img:nth-child(3){opacity:1;transform:none}
+  .tour-dots{display:flex;justify-content:center;gap:8px;margin-top:22px}
+  .tour-dots span{width:8px;height:8px;border-radius:99px;background:var(--border);transition:width .45s var(--ease), background .45s var(--ease)}
+  .tour-phone[data-step="0"] .tour-dots span:nth-child(1),
+  .tour-phone[data-step="1"] .tour-dots span:nth-child(2),
+  .tour-phone[data-step="2"] .tour-dots span:nth-child(3){width:26px;background:var(--brand)}
+}
+
+/* ---------- gallery: every screen, swipeable ---------- */
+.gallery-section{padding-top:0}
+.gallery{
+  /* Full-bleed track whose first card lines up with the page column. */
+  --edge:max(24px, calc((100vw - var(--maxw)) / 2 + 24px));
+  display:flex;gap:28px;overflow-x:auto;
+  padding:10px var(--edge) 30px;scroll-padding-inline:var(--edge);
+  scroll-snap-type:x mandatory;overscroll-behavior-x:contain;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.gallery::-webkit-scrollbar{display:none}
+.gallery:focus-visible{outline-offset:-4px}
+.gallery figure{flex:0 0 240px;margin:0;scroll-snap-align:start}
+.gallery .phone{border-width:8px;border-radius:38px}
+.gallery .phone img{border-radius:30px}
+.gallery figcaption{margin-top:16px;text-align:center;font-size:15px;font-weight:600;color:var(--title)}
+@media (max-width:720px){.gallery{gap:18px}.gallery figure{flex-basis:210px}}
+.gallery-nav{display:flex;justify-content:flex-end;gap:12px}
+.gallery-nav[hidden]{display:none}
+.gallery-btn{
+  width:44px;height:44px;border-radius:50%;cursor:pointer;
+  display:grid;place-items:center;padding:0;
+  background:var(--surface);color:var(--title);border:1px solid var(--border);
+  transition:opacity .25s var(--ease), transform .25s var(--ease);
+}
+.gallery-btn:hover{transform:scale(1.06)}
+.gallery-btn:disabled{opacity:.35;cursor:default;transform:none}
+.gallery-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+@media (pointer:coarse){.gallery-nav{display:none}}
 
 /* ================= motion ================= */
 

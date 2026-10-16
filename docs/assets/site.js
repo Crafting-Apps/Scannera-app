@@ -24,10 +24,13 @@
       });
     }, { rootMargin: '0px 0px -8% 0px' });
 
+    var touring = window.matchMedia('(min-width: 901px)').matches;
     document.querySelectorAll(REVEAL).forEach(function (el) {
       // Skip anything nested inside another revealed element, so a block
-      // never fades in twice.
+      // never fades in twice, and the tour steps, which dim and light up
+      // on their own.
       if (el.parentElement.closest('.reveal')) return;
+      if (touring && el.closest('.tour')) return;
       if (el.getBoundingClientRect().top < fold) return;
       var index = Array.prototype.indexOf.call(el.parentElement.children, el);
       el.style.transitionDelay = Math.min(index, 4) * 70 + 'ms';
@@ -86,6 +89,49 @@
     window.matchMedia('(min-width: 721px)').addEventListener('change', function () {
       setOpen(false);
     });
+  }
+
+  // ---------- how it works tour ----------
+  // The step crossing the middle of the viewport lights up and the pinned
+  // phone shows its screen. CSS only uses this on wide screens.
+  var tourPhone = document.querySelector('.tour-phone');
+  if (tourPhone && canObserve) {
+    var steps = Array.prototype.slice.call(document.querySelectorAll('.tour > .pillar'));
+    var setStep = function (i) {
+      tourPhone.setAttribute('data-step', i);
+      steps.forEach(function (s, j) { s.classList.toggle('is-active', i === j); });
+    };
+    setStep(0);
+    var stepSpy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) setStep(steps.indexOf(entry.target));
+      });
+    }, { rootMargin: '-50% 0px -50% 0px' });
+    steps.forEach(function (s) { stepSpy.observe(s); });
+  }
+
+  // ---------- gallery arrows ----------
+  // The track scrolls natively; the arrows page it by roughly a screenful
+  // and grey out at either end.
+  var gallery = document.querySelector('.gallery');
+  var galleryNav = document.querySelector('.gallery-nav');
+  if (gallery && galleryNav) {
+    var buttons = galleryNav.querySelectorAll('.gallery-btn');
+    var update = function () {
+      var max = gallery.scrollWidth - gallery.clientWidth - 2;
+      buttons[0].disabled = gallery.scrollLeft <= 2;
+      buttons[1].disabled = gallery.scrollLeft >= max;
+    };
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var dir = Number(btn.getAttribute('data-dir'));
+        gallery.scrollBy({ left: dir * gallery.clientWidth * 0.8, behavior: reduceMotion ? 'auto' : 'smooth' });
+      });
+    });
+    gallery.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    galleryNav.hidden = false;
+    update();
   }
 
   // ---------- current section ----------
