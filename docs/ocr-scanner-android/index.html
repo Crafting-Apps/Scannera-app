@@ -33,12 +33,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js" defer></script>
 </head>
 <body>
 
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="/"><img src="/assets/icon.png" alt="">Scannera</a>
+    <a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="30" height="30">Scannera</a>
     <nav>
       <a href="/#how" class="hide-sm">Features</a>
       <a href="/#privacy" class="hide-sm">Privacy</a>
@@ -64,7 +65,7 @@
     </div>
     <p class="meta">Android 8.0 and later · Free to use · Optional one-time Pro upgrade</p>
     <div class="hero-shot">
-      <img src="/assets/ui/ocr.png" alt="Offline OCR in Scannera: recognised text selected on a scanned invoice, with a Copy option" width="731" height="1463" fetchpriority="high" decoding="async">
+      <div class="phone"><img src="/assets/ui/ocr.webp" alt="Offline OCR in Scannera: recognised text selected on a scanned invoice, with a Copy option" width="731" height="1463" fetchpriority="high" decoding="async"></div>
     </div>
   </section>
 
@@ -106,7 +107,7 @@
       <p>The trade-off is that the model has to be small enough to ship with an app, which is what shapes the limitations further down this page. The <a href="/offline-document-scanner-android/">offline document scanner</a> page covers which other parts of Scannera work the same way.</p>
     </div>
     <figure class="shot">
-      <img src="/assets/ui/ocr.png" alt="Offline OCR in Scannera: recognised text selected on a scanned invoice, with a Copy option" width="731" height="1463" loading="lazy" decoding="async">
+      <div class="phone"><img src="/assets/ui/ocr.webp" alt="Offline OCR in Scannera: recognised text selected on a scanned invoice, with a Copy option" width="731" height="1463" loading="lazy" decoding="async"></div>
       <figcaption>Recognised text selected on a scanned invoice, ready to copy.</figcaption>
     </figure>
   </section>
@@ -389,6 +390,5 @@
 }
 </script>
 
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
 </body>
 </html>

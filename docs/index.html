@@ -29,6 +29,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/assets/site.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="/assets/site.js" defer></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -202,7 +204,7 @@
 
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="/"><img src="/assets/icon.png" alt="" width="30" height="30">Scannera</a>
+    <a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="30" height="30">Scannera</a>
     <nav>
       <a class="hide-sm" href="#how">Features</a>
       <a class="hide-sm" href="#privacy">Privacy</a>
@@ -225,7 +227,7 @@
     </div>
     <p class="meta">Android 8.0 and later · Free to use · Optional one-time Pro upgrade</p>
     <div class="hero-shot">
-      <img src="/assets/ui/privacy.png" alt="The Scannera onboarding screen explaining on-device processing" width="731" height="1463" fetchpriority="high">
+      <div class="phone"><img src="/assets/ui/privacy.webp" alt="The Scannera onboarding screen explaining on-device processing" width="731" height="1463" fetchpriority="high"></div>
     </div>
   </section>
 
@@ -245,6 +247,19 @@
       <span class="eyebrow">How it works</span>
       <h2>Paper in. Finished PDF out.</h2>
       <p>Three steps, and every one of them runs on your phone.</p>
+    </div>
+
+    <!-- On wide screens with script, the phone below pins in place and its
+         screen changes as each step scrolls past; the per-step screenshots
+         are then hidden. Phones and no-script keep one image per step. -->
+    <div class="tour">
+    <div class="tour-phone" aria-hidden="true">
+      <div class="phone">
+        <img src="/assets/ui/scan.webp" alt="" width="731" height="1463" loading="lazy" decoding="async">
+        <img src="/assets/ui/ocr.webp" alt="" width="731" height="1463" loading="lazy" decoding="async">
+        <img src="/assets/ui/pdf-edit.webp" alt="" width="731" height="1463" loading="lazy" decoding="async">
+      </div>
+      <div class="tour-dots"><span></span><span></span><span></span></div>
     </div>
 
     <div class="pillar">
@@ -272,7 +287,7 @@
         </div>
       </div>
       <div class="pillar-art">
-        <img src="/assets/ui/scan.png" alt="A multi-page contract scanned in Scannera" width="731" height="1463" loading="lazy" decoding="async">
+        <div class="phone"><img src="/assets/ui/scan.webp" alt="A multi-page contract scanned in Scannera" width="731" height="1463" loading="lazy" decoding="async"></div>
       </div>
     </div>
 
@@ -297,7 +312,7 @@
         </div>
       </div>
       <div class="pillar-art">
-        <img src="/assets/ui/ocr.png" alt="Scannera recognising text on a scanned invoice, ready to copy" width="731" height="1463" loading="lazy" decoding="async">
+        <div class="phone"><img src="/assets/ui/ocr.webp" alt="Scannera recognising text on a scanned invoice, ready to copy" width="731" height="1463" loading="lazy" decoding="async"></div>
       </div>
     </div>
 
@@ -326,8 +341,34 @@
         </div>
       </div>
       <div class="pillar-art">
-        <img src="/assets/ui/pdf-edit.png" alt="Annotating and signing an invoice in Scannera" width="731" height="1463" loading="lazy" decoding="async">
+        <div class="phone"><img src="/assets/ui/pdf-edit.webp" alt="Annotating and signing an invoice in Scannera" width="731" height="1463" loading="lazy" decoding="async"></div>
       </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Every screen, swipeable. Native scroll-snap, so it works by touch,
+       trackpad and keyboard with or without script; the arrows are extra. -->
+  <section class="gallery-section" aria-labelledby="gallery-title">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">A look around</span>
+        <h2 id="gallery-title">Every screen, up close.</h2>
+        <p>Swipe through the app as it looks today.</p>
+      </div>
+    </div>
+    <div class="gallery" tabindex="0" aria-label="Scannera screens">
+      <figure><div class="phone"><img src="/assets/ui/privacy.webp" alt="Onboarding explaining that documents are processed and stored on the device" width="731" height="1463" loading="lazy" decoding="async"></div><figcaption>Private from the first screen</figcaption></figure>
+      <figure><div class="phone"><img src="/assets/ui/scan.webp" alt="A multi-page contract scanned in Scannera" width="731" height="1463" loading="lazy" decoding="async"></div><figcaption>Multi-page scans</figcaption></figure>
+      <figure><div class="phone"><img src="/assets/ui/ocr.webp" alt="Recognised text selected on a scanned invoice, with a Copy option" width="731" height="1463" loading="lazy" decoding="async"></div><figcaption>Copy text off any page</figcaption></figure>
+      <figure><div class="phone"><img src="/assets/ui/pdf-edit.webp" alt="The PDF editor with the annotation toolbar, a highlight and a signature" width="731" height="1463" loading="lazy" decoding="async"></div><figcaption>Annotate and sign</figcaption></figure>
+      <figure><div class="phone"><img src="/assets/ui/organize.webp" alt="The documents library with colour-coded Work, Travel, Receipts and Study folders" width="731" height="1463" loading="lazy" decoding="async"></div><figcaption>Colour-coded folders</figcaption></figure>
+      <figure><div class="phone"><img src="/assets/ui/watermark.webp" alt="The Set watermark screen previewing a diagonal CONFIDENTIAL watermark" width="731" height="1463" loading="lazy" decoding="async"></div><figcaption>Your own watermark</figcaption></figure>
+      <figure><div class="phone"><img src="/assets/ui/backup.webp" alt="Google Drive backup settings with auto backup, Wi-Fi only and notification toggles" width="731" height="1463" loading="lazy" decoding="async"></div><figcaption>Backup to your own Drive</figcaption></figure>
+    </div>
+    <div class="wrap gallery-nav" hidden>
+      <button type="button" class="gallery-btn" data-dir="-1" aria-label="Previous screens"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+      <button type="button" class="gallery-btn" data-dir="1" aria-label="Next screens"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
     </div>
   </section>
 
