@@ -33,12 +33,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js" defer></script>
 </head>
 <body>
 
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="/"><img src="/assets/icon.png" alt="">Scannera</a>
+    <a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="30" height="30">Scannera</a>
     <nav>
       <a href="/#how" class="hide-sm">Features</a>
       <a href="/#privacy" class="hide-sm">Privacy</a>
@@ -64,7 +65,7 @@
     </div>
     <p class="meta">Android 8.0 and later · Free to use · Optional one-time Pro upgrade</p>
     <div class="hero-shot">
-      <img src="/assets/ui/scan.png" alt="A multi-page consulting agreement scanned in Scannera, shown as sharp, readable pages" width="731" height="1463" fetchpriority="high" decoding="async">
+      <div class="phone"><img src="/assets/ui/scan.webp" alt="A multi-page consulting agreement scanned in Scannera, shown as sharp, readable pages" width="731" height="1463" fetchpriority="high" decoding="async"></div>
     </div>
   </section>
 
@@ -98,7 +99,7 @@
       <p>None of these steps need a connection. If you want the detail on what that means in practice, the <a href="/offline-document-scanner-android/">offline document scanner</a> page walks through it.</p>
     </div>
     <figure class="shot">
-      <img src="/assets/ui/scan.png" alt="A multi-page consulting agreement scanned in Scannera, shown as sharp, readable pages" width="731" height="1463" loading="lazy" decoding="async">
+      <div class="phone"><img src="/assets/ui/scan.webp" alt="A multi-page consulting agreement scanned in Scannera, shown as sharp, readable pages" width="731" height="1463" loading="lazy" decoding="async"></div>
       <figcaption>A multi-page agreement after capture, correction and enhancement.</figcaption>
     </figure>
   </section>
@@ -182,11 +183,11 @@
     </div>
     <div class="two-up">
       <figure>
-        <img src="/assets/ui/pdf-edit.png" alt="The Scannera PDF editor, with the annotation toolbar, a highlight and a signature on an invoice" width="731" height="1463" loading="lazy" decoding="async">
+        <div class="phone"><img src="/assets/ui/pdf-edit.webp" alt="The Scannera PDF editor, with the annotation toolbar, a highlight and a signature on an invoice" width="731" height="1463" loading="lazy" decoding="async"></div>
         <figcaption>Annotation toolbar, a highlight and a placed signature.</figcaption>
       </figure>
       <figure>
-        <img src="/assets/ui/watermark.png" alt="The Set watermark screen in Scannera, previewing a diagonal CONFIDENTIAL watermark on a page" width="731" height="1463" loading="lazy" decoding="async">
+        <div class="phone"><img src="/assets/ui/watermark.webp" alt="The Set watermark screen in Scannera, previewing a diagonal CONFIDENTIAL watermark on a page" width="731" height="1463" loading="lazy" decoding="async"></div>
         <figcaption>A live preview of your watermark before it goes on an export.</figcaption>
       </figure>
     </div>
@@ -203,7 +204,7 @@
       <p>Imported documents sit in the same library as scanned ones, organised into colour-coded folders and searchable by name or by the text inside them.</p>
     </div>
     <figure class="shot">
-      <img src="/assets/ui/organize.png" alt="The Scannera documents library, with colour-coded Work, Travel, Receipts and Study folders" width="731" height="1463" loading="lazy" decoding="async">
+      <div class="phone"><img src="/assets/ui/organize.webp" alt="The Scannera documents library, with colour-coded Work, Travel, Receipts and Study folders" width="731" height="1463" loading="lazy" decoding="async"></div>
       <figcaption>Scanned and imported documents share one folder library.</figcaption>
     </figure>
   </section>
@@ -463,6 +464,5 @@
 }
 </script>
 
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
 </body>
 </html>
