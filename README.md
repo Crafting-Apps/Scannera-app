@@ -32,3 +32,7 @@ menu; every page still reads fully with JavaScript off.
   Wrap each one in `<div class="phone">` to get the device frame.
 - `docs/privacy/` keeps its own inline styles and is not on the shared
   stylesheet yet.
+- `docs/b543fbdfe559ad5ff64f819d3efe61bf.txt` is the IndexNow key. It must stay
+  reachable at that exact URL or Bing rejects every submission. To ping Bing
+  after publishing new or changed pages:
+  `curl -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json' -d @indexnow.json`
