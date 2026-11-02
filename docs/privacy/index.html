@@ -161,12 +161,12 @@
             <div class="meta-info">
                 <strong>Application:</strong> Scannera &nbsp;|&nbsp; 
                 <strong>Effective Date:</strong> August 9, 2026 &nbsp;|&nbsp; 
-                <strong>Last Updated:</strong> October 16, 2026
+                <strong>Last Updated:</strong> November 2, 2026
             </div>
         </div>
 
         <div class="highlight-box">
-            <strong style="color: #16a34a;">Privacy-First Architecture:</strong> Scannera is engineered to process documents 100% locally on your physical Android device. We do not operate central cloud servers to collect, upload, store, or monitor your scanned files or generated QR codes.
+            <strong style="color: #16a34a;">Privacy-First Architecture:</strong> Scannera processes your documents locally on your Android device. We do not operate servers that collect, upload, store, or monitor your scanned files, recognised text, or QR code contents. The app does send anonymous usage analytics and crash reports through Google Firebase (see Section 5); these never contain your documents or their contents.
         </div>
 
         <h2>1. Introduction & Overview</h2>
@@ -178,10 +178,11 @@
         <ul>
             <li><strong>Zero Centralized Document Servers:</strong> Core application functionality (including camera capturing, page edge detection, image filter enhancements, perspective correction, PDF rendering, watermark embedding, and QR code generation) runs entirely on your local device hardware.</li>
             <li><strong>No Centralized Uploads:</strong> Your scanned documents, captured images, exported PDFs, written annotations, digital signatures, and generated QR codes are never uploaded, transmitted, or monitored by us or any centralized server owned by Scannera.</li>
+            <li><strong>On-Device Recognition:</strong> Text recognition (OCR) and QR/barcode decoding use Google ML Kit models bundled inside the app, so your pages and codes are recognised on the device and are not sent to Google for processing.</li>
         </ul>
 
         <h2>3. Detailed Breakdown of Permissions & Functionalities</h2>
-        <p>To deliver its core features, Scannera requests specific Android OS runtime permissions. Every permission requested is directly tied to an in-app feature and operates within minimum-scope requirements:</p>
+        <p>To deliver its features, Scannera declares the Android permissions below. Each one is tied to a specific feature. Only Camera and Notifications are asked for at runtime; the others are granted at install.</p>
 
         <div class="table-scroll"><table>
             <thead>
@@ -198,22 +199,39 @@
                     <td>Used solely to capture physical paper documents and scan QR codes/barcodes in real time via live camera view. Camera feeds are processed temporarily in volatile memory on-device and are never recorded or transmitted externally.</td>
                 </tr>
                 <tr>
-                    <td><span class="badge">READ_EXTERNAL_STORAGE</span> / <span class="badge">READ_MEDIA_IMAGES</span></td>
-                    <td>Gallery Import & Custom Watermarking</td>
-                    <td>Allows you to select existing images or PDF documents from your device gallery to import into Scannera for editing, annotating, or watermarking.</td>
-                </tr>
-                <tr>
-                    <td><span class="badge">WRITE_EXTERNAL_STORAGE</span></td>
-                    <td>Exporting Scans (Android 9 & below)</td>
-                    <td>Enables saving rendered PDFs, high-resolution JPEGs, and custom QR code images directly to your device's local folder directory.</td>
-                </tr>
-                <tr>
                     <td><span class="badge">INTERNET</span> / <span class="badge">ACCESS_NETWORK_STATE</span></td>
-                    <td>Google Play Billing & Optional Drive Sync</td>
-                    <td>Used exclusively to verify Lifetime Pro purchases via Google Play Billing servers and to execute user-initiated Google Drive cloud backups.</td>
+                    <td>Pro Purchases, Optional Drive Backup, Analytics & Crash Reports, Notifications</td>
+                    <td>Used to verify Lifetime Pro purchases through Google Play Billing, to run Google Drive backups you have turned on, to send anonymous usage analytics and crash reports (Section 5), and to receive app notifications. Network state is checked so backups can be limited to Wi-Fi. Scanning, OCR, editing and export never need a connection.</td>
+                </tr>
+                <tr>
+                    <td><span class="badge">POST_NOTIFICATIONS</span></td>
+                    <td>Backup Progress & App Notifications</td>
+                    <td>Shows Google Drive backup progress and results, and occasional notifications from Scannera. Optional: if you decline or turn notifications off, nothing is shown and the device is not subscribed to app notifications.</td>
+                </tr>
+                <tr>
+                    <td><span class="badge">FOREGROUND_SERVICE</span> / <span class="badge">FOREGROUND_SERVICE_DATA_SYNC</span> / <span class="badge">WAKE_LOCK</span> / <span class="badge">RECEIVE_BOOT_COMPLETED</span></td>
+                    <td>Google Drive Backup</td>
+                    <td>Lets a long backup finish without being stopped by the system, and lets queued backups resume after the device restarts. Only used when Drive backup is on.</td>
+                </tr>
+                <tr>
+                    <td><span class="badge">com.android.vending.BILLING</span></td>
+                    <td>Pro Purchase</td>
+                    <td>Required by Google Play Billing to sell and restore the one-time Pro upgrade.</td>
+                </tr>
+                <tr>
+                    <td><span class="badge">c2dm.permission.RECEIVE</span></td>
+                    <td>App Notifications</td>
+                    <td>Required by Firebase Cloud Messaging to deliver notifications to the app.</td>
+                </tr>
+                <tr>
+                    <td><span class="badge">ACCESS_ADSERVICES_AD_ID</span> / <span class="badge">ACCESS_ADSERVICES_ATTRIBUTION</span></td>
+                    <td>Added by Firebase Analytics</td>
+                    <td>Declared automatically by the Google Analytics for Firebase library. Scannera shows no ads and does not use advertising or ad attribution; the separate Google advertising ID permission is removed from the app.</td>
                 </tr>
             </tbody>
         </table></div>
+
+        <p><strong>No storage permission.</strong> Scannera does not request access to your photos or files. Importing uses Android's system file and photo pickers, which give the app access only to the items you choose. Saving uses Android's system save dialog or adds images to your gallery without a storage permission.</p>
 
         <h2>4. Feature-Specific Data Disclosures</h2>
 
@@ -224,13 +242,15 @@
         <h3>B. QR & Barcode Suite (Scanner & Generator)</h3>
         <p><strong>Data Involved:</strong> The contents of QR codes and barcodes you scan (whatever the code's creator encoded, such as a link, text, Wi-Fi details or a contact card), and the links or plain text you enter to generate your own QR codes.</p>
         <p><strong>Handling:</strong> QR/Barcode decoding happens instantaneously on-device. When creating custom QR codes, input details are formatted into a matrix image purely inside your app instance. We do not index, track, or save your generated QR contents.</p>
+        <p><strong>Scan history:</strong> The contents of your 50 most recent scanned codes are kept in a history on your device so you can reopen them. This history never leaves your device, and you can delete individual entries or clear it from the scanner screen. Analytics records only the general type of a scanned code (for example "link" or "text"), never its contents.</p>
 
         <h3>C. Optional Google Drive Backup & Cloud Integration</h3>
         <p><strong>Data Involved:</strong> Scanned PDF documents, local folder backup files, and Google user authentication tokens.</p>
         <p><strong>Handling:</strong></p>
         <ul>
-            <li>Cloud backup is an optional, user-triggered feature.</li>
+            <li>Cloud backup is optional and off by default. Once you sign in and turn it on, you can back up manually and limit backups to Wi-Fi; Pro users can also turn on automatic backup after each change.</li>
             <li>If enabled, Scannera uses official Google Sign-In SDKs to authenticate directly with Google.</li>
+            <li>Scannera requests only the <code>drive.file</code> scope, which gives it access to the files it creates in your Drive and nothing else.</li>
             <li>Files are synced directly between your Android device and your personal Google Drive storage account.</li>
             <li>Scannera developers do not receive, store, or have access to your Google account credentials, personal Drive folders, or backed-up files.</li>
             <li>Use of information received from Google APIs strictly complies with the Google API Services User Data Policy, including its Limited Use requirements.</li>
@@ -240,21 +260,31 @@
         <p><strong>Data Involved:</strong> Order IDs, purchase status, and entitlement tokens for the Lifetime Pro License.</p>
         <p><strong>Handling:</strong> Financial transactions are processed entirely by Google Play Billing services. Scannera does not collect, store, or process payment cards, banking credentials, billing addresses, or legal names. Google Play returns a secure cryptographic token to unlock Pro features.</p>
 
-        <h2>5. Analytics & Diagnostics</h2>
-        <p>To maintain app stability and prevent crashes across different Android device configurations, Scannera may collect minimal, non-personally identifiable diagnostic telemetry (e.g., system crash logs, hardware specifications, Android OS version). This technical data contains zero document contents, personal identifiers, or location data and is used strictly for crash debugging.</p>
+        <h2>5. Analytics, Crash Reports & Notifications</h2>
+        <p>Scannera uses Google Firebase to understand how the app is used and to fix crashes. These services run automatically whenever your device is online.</p>
+        <ul>
+            <li><strong>Usage analytics (Google Analytics for Firebase):</strong> Which screens are opened and for how long, which features are used, whether operations such as a scan, OCR, export or backup succeeded and how long they took, counts (for example the number of pages), and whether you have Pro. Firebase also collects standard technical information: device model, Android version, app version, approximate country (derived by Google from your IP address), and a random app-instance identifier.</li>
+            <li><strong>Crash reports (Firebase Crashlytics):</strong> When the app crashes, technical details such as the error and stack trace, device model, Android version and app version.</li>
+            <li><strong>Notifications (Firebase Cloud Messaging):</strong> If notifications are allowed, the device is subscribed to Scannera's notification topic, using an identifier issued by Firebase.</li>
+        </ul>
+        <p><strong>What is never sent:</strong> document or page images, recognised text, document, folder or file names, annotations, signatures, QR or barcode contents, or any value taken from your documents. We do not collect your name, email address, phone number or precise location, and analytics is not linked to your Google account.</p>
+        <p>This data is processed by Google on our behalf; see <a href="https://firebase.google.com/support/privacy">Firebase privacy information</a> and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>. Scannera does not currently offer an in-app switch to turn analytics or crash reporting off. Uninstalling the app stops all collection, and reinstalling it starts with a new app-instance identifier.</p>
 
         <h2>6. Data Sharing & Third-Party Services</h2>
-        <p>We do not sell, rent, trade, or monetize your personal data or document content. We only integrate official framework SDKs necessary for app infrastructure:</p>
+        <p>We do not sell, rent, trade, or monetize your personal data or document content, and Scannera contains no advertising. We use these Google services:</p>
         <ul>
-            <li><strong>Google Play Services / Billing:</strong> For handling securely verified in-app purchases.</li>
-            <li><strong>Google Drive API:</strong> For executing user-requested cloud backups to your private drive.</li>
+            <li><strong>Google Play Billing:</strong> For handling securely verified in-app purchases.</li>
+            <li><strong>Google Drive API and Google Sign-In:</strong> For cloud backups to your own Drive, only if you turn them on.</li>
+            <li><strong>Google Firebase (Analytics, Crashlytics, Cloud Messaging):</strong> For anonymous usage analytics, crash reports and notifications, as described in Section 5.</li>
+            <li><strong>Google ML Kit:</strong> On-device text and barcode recognition. Its models run inside the app; your images are not sent for recognition.</li>
         </ul>
 
         <h2>7. Data Retention & Deletion Policy</h2>
         <ul>
             <li><strong>Local Data:</strong> Your scans and saved files remain on your device until you manually delete them inside the app or uninstall the application.</li>
             <li><strong>Cloud Backups:</strong> Files backed up to your personal Google Drive account remain in your drive until you manage or delete them through your Google Account.</li>
-            <li><strong>Data Clearance:</strong> Uninstalling Scannera immediately removes all local app-cached files, app state settings, and temporary scan memory from your device.</li>
+            <li><strong>Data Clearance:</strong> Uninstalling Scannera immediately removes all local app-cached files, app state settings, scan history and temporary scan memory from your device. Android's own device backup is turned off for Scannera, so this local data is not copied to your Google account by the system.</li>
+            <li><strong>Analytics & Crash Data:</strong> Kept by Google Firebase under the retention settings of our Firebase project, and not linked to your name, email or Google account.</li>
         </ul>
 
         <h2>8. Children’s Privacy Protection</h2>
@@ -264,14 +294,15 @@
         <p>We prioritize user data safety:</p>
         <ul>
             <li>Data processed locally benefits from native Android Application Sandbox security.</li>
-            <li>All network communications for in-app purchases and Google Drive syncs are encrypted in transit using industry-standard HTTPS/TLS protocols.</li>
+            <li>All network communications for in-app purchases, Google Drive syncs, analytics, crash reports and notifications are encrypted in transit using industry-standard HTTPS/TLS protocols.</li>
+            <li>Optional App Lock requires your device screen lock (PIN, pattern, password or biometrics) before Scannera opens.</li>
         </ul>
 
         <h2>10. User Rights (GDPR, CCPA, Regional Laws)</h2>
         <p>Depending on your region, you have rights regarding your data:</p>
         <ul>
             <li><strong>Right to Access & Control:</strong> Because your files reside on your device, you can access, export, modify, or delete your content at any time directly through the app interface.</li>
-            <li><strong>Right to Revoke Permissions:</strong> You can revoke Camera, Storage, or Google Account permissions at any time via your Android OS settings (<code>Settings -&gt; Apps -&gt; Scannera -&gt; Permissions</code>).</li>
+            <li><strong>Right to Revoke Permissions:</strong> You can revoke Camera or Notification permissions at any time via your Android OS settings (<code>Settings -&gt; Apps -&gt; Scannera -&gt; Permissions</code>). You can sign out of Google Drive backup in the app, and remove Scannera's Drive access from your Google Account's security settings.</li>
         </ul>
 
         <h2>11. Changes to This Privacy Policy</h2>
@@ -282,13 +313,13 @@
             <p>If you have questions, feedback, or inquiries regarding this Privacy Policy or app privacy practices, please contact us at:</p>
 
             <p style="margin-bottom: 5px;"><strong>Developer Support Email:</strong> <a href="mailto:scannera.support@gmail.com">scannera.support@gmail.com</a></p>
-            <p style="margin-top: 0;"><strong>Developer / Company Name:</strong>craftingapps.dev@gmail.com / Personal</p>
+            <p style="margin-top: 0;"><strong>Developer:</strong> Crafting Apps &middot; <a href="mailto:craftingapps.dev@gmail.com">craftingapps.dev@gmail.com</a></p>
         </div>
 
         <p style="margin-top: 30px; font-size: 0.9rem;">
             Back to <a href="/">Scannera</a> &nbsp;·&nbsp;
-            <a href="/#features">Features</a> &nbsp;·&nbsp;
-            <a href="/#pro">Pricing</a> &nbsp;·&nbsp;
+            <a href="/#how">Features</a> &nbsp;·&nbsp;
+            <a href="/#pricing">Pricing</a> &nbsp;·&nbsp;
             <a href="https://play.google.com/store/apps/details?id=com.craftingapps.scannera">Scannera on Google Play</a> &nbsp;·&nbsp;
             <a href="https://www.youtube.com/@ScanneraApp">Scannera on YouTube</a>
         </p>
