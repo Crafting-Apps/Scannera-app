@@ -166,7 +166,7 @@
         </div>
 
         <div class="highlight-box">
-            <strong style="color: #16a34a;">Privacy-First Architecture:</strong> Scannera processes your documents locally on your Android device. We do not operate servers that collect, upload, store, or monitor your scanned files, recognised text, or QR code contents. The app does send anonymous usage analytics and crash reports through Google Firebase (see Section 5); these never contain your documents or their contents.
+            <strong style="color: #16a34a;">Privacy-First Architecture:</strong> Scannera processes your documents locally on your Android device. We do not operate servers that collect, upload, store, or monitor your scanned files, recognised text, or QR code contents. The optional Scannera plugin for ChatGPT runs on a server, but keeps nothing you send it (see Section 11). The app does send anonymous usage analytics and crash reports through Google Firebase (see Section 5); these never contain your documents or their contents.
         </div>
 
         <h2>1. Introduction & Overview</h2>
@@ -277,6 +277,7 @@
             <li><strong>Google Drive API and Google Sign-In:</strong> For cloud backups to your own Drive, only if you turn them on.</li>
             <li><strong>Google Firebase (Analytics, Crashlytics, Cloud Messaging):</strong> For anonymous usage analytics, crash reports and notifications, as described in Section 5.</li>
             <li><strong>Google ML Kit:</strong> On-device text and barcode recognition. Its models run inside the app; your images are not sent for recognition.</li>
+            <li><strong>Google Cloud:</strong> Hosts the optional Scannera plugin for ChatGPT, as described in Section 11.</li>
         </ul>
 
         <h2>7. Data Retention & Deletion Policy</h2>
@@ -305,11 +306,24 @@
             <li><strong>Right to Revoke Permissions:</strong> You can revoke Camera or Notification permissions at any time via your Android OS settings (<code>Settings -&gt; Apps -&gt; Scannera -&gt; Permissions</code>). You can sign out of Google Drive backup in the app, and remove Scannera's Drive access from your Google Account's security settings.</li>
         </ul>
 
-        <h2>11. Changes to This Privacy Policy</h2>
+        <h2>11. Scannera in ChatGPT</h2>
+        <p>Scannera offers an optional plugin for ChatGPT that creates QR codes and answers questions about the Scannera app. It is separate from the Android app: it cannot access your device, your documents, or anything stored in the Scannera app.</p>
+        <ul>
+            <li><strong>What it processes:</strong> only the content you ask it to turn into a QR code: a web address, a piece of text, contact details (name, organization, job title, phone number, email address and website, which may be about you or another person), or the name of an open Wi-Fi network. Questions about the Scannera app use fixed topics and contain no personal data.</li>
+            <li><strong>Wi-Fi passwords:</strong> the plugin does not request, accept or process Wi-Fi passwords. It only creates QR codes for open networks and refuses secured ones.</li>
+            <li><strong>How it is used:</strong> that content is held in server memory only long enough to create the QR code, which is returned to your ChatGPT conversation. It is then discarded. It is never stored, logged, or used for any other purpose.</li>
+            <li><strong>Information ChatGPT sends:</strong> with each request, ChatGPT may include anonymized identifiers, your language and an approximate location. The plugin does not use, log or store them.</li>
+            <li><strong>Hosting logs:</strong> the plugin runs on Google Cloud. Like any web service, the hosting platform records technical request logs: IP address, date and time, requested path, response status, response time and browser or client type. These logs never contain the content of your QR codes. They are used only for security, abuse prevention and reliability, and are deleted automatically after 30 days. The plugin's own logs record only which tool ran, whether it succeeded, and how long it took.</li>
+            <li><strong>Recipients:</strong> Google Cloud processes this data as our hosting provider. We do not sell or share it, and the plugin shows no advertising.</li>
+            <li><strong>Your ChatGPT conversation:</strong> what you type in ChatGPT, and the QR codes returned to it, are handled by OpenAI under <a href="https://openai.com/policies/privacy-policy/">OpenAI's privacy policy</a>. We do not control that data.</li>
+            <li><strong>Your controls:</strong> because the plugin keeps none of your QR content, there is nothing for us to access or delete. You can disconnect the plugin in ChatGPT at any time. For questions about hosting logs, contact us at the address below.</li>
+        </ul>
+
+        <h2>12. Changes to This Privacy Policy</h2>
         <p>We may update this Privacy Policy from time to time to reflect app updates, technical changes, or Play Store policy mandates. Any updates will be posted on this page with a revised "Last Updated" date at the top.</p>
 
         <div class="contact-box">
-            <h2 style="margin-top: 0; border-left: none; padding-left: 0; color: #C2410C;">12. Contact Information</h2>
+            <h2 style="margin-top: 0; border-left: none; padding-left: 0; color: #C2410C;">13. Contact Information</h2>
             <p>If you have questions, feedback, or inquiries regarding this Privacy Policy or app privacy practices, please contact us at:</p>
 
             <p style="margin-bottom: 5px;"><strong>Developer Support Email:</strong> <a href="mailto:scannera.support@gmail.com">scannera.support@gmail.com</a></p>
