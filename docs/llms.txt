@@ -1,0 +1,26 @@
+# Scannera
+
+> Scannera is a private, offline document scanner, PDF editor and QR toolkit for Android. Scanning, filters, OCR, annotation, signing and PDF export all run on the device. No account is required and nothing is uploaded unless the user turns on Google Drive backup to their own account.
+
+Get the app: https://play.google.com/store/apps/details?id=com.craftingapps.scannera
+
+- Platform: Android 8.0 and later
+- Price: free to use; Scannera Pro is a one-time US$9.99 purchase with lifetime access, no subscription
+- Publisher: Crafting Apps
+- Support: scannera.support@gmail.com
+
+## Pages
+
+- [Scannera home](https://scannera.in/): features, pricing and FAQ
+- [Compare scanner apps](https://scannera.in/compare/): Scannera against CamScanner, Adobe Scan, Genius Scan and the OneDrive scanner on privacy, features and price
+- [PDF scanner](https://scannera.in/pdf-scanner-android/): scanning to multi-page PDFs, annotation, signing and watermarks
+- [OCR scanner](https://scannera.in/ocr-scanner-android/): on-device text recognition and its language coverage and limits
+- [Private document scanner](https://scannera.in/private-document-scanner/): what runs locally and what does not
+- [Offline document scanner](https://scannera.in/offline-document-scanner-android/): using the app with no connection
+- [Privacy policy](https://scannera.in/privacy/)
+
+## Notes
+
+- OCR covers Latin-script languages plus Hindi, Marathi, Chinese, Japanese and Korean, and runs from a model bundled in the app.
+- Google Drive backup is optional and off by default; it writes to the user's own Drive, not to a Scannera server.
+- Anonymous crash reports and usage analytics are sent; document content never is.
